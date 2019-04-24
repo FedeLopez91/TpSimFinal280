@@ -82,11 +82,11 @@ namespace Simulacion
 
                 //FUNCTION Z
                 var isValid = restriccionesresult.Where(x => x == "NO").FirstOrDefault();
-                if (isValid != null)
+                if (isValid== null)
                 {
                     double funcionZResult = (double.Parse(vector[2]) * functionZ.variables[0]) + (double.Parse(vector[4]) * functionZ.variables[1]) + functionZ.c;
                     vector[11] = funcionZResult.ToString();
-                    if (string.IsNullOrEmpty(vector[11]) || double.Parse(vector[11]) < funcionZResult)
+                    if (string.IsNullOrEmpty(vector[12]) || double.Parse(vector[12]) <= funcionZResult)
                     {
                         vector[12] = funcionZResult.ToString();
                         vector[13] = vector[4];
