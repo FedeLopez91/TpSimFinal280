@@ -19,28 +19,31 @@ namespace Simulacion
             //NRO ITERACION
             tabla.Columns.Add("#");
             //VARIABLES
-            tabla.Columns.Add("RND X1");
-            tabla.Columns.Add("X1");
-            tabla.Columns.Add("RND X2");
-            tabla.Columns.Add("X2");
+            for (int i = 1; i <= functionZ.variables.Length; i++)
+            {
+                tabla.Columns.Add("RND X"+i);
+                tabla.Columns.Add("X"+i);
+            }
+
             //RESTRICCIONES
-            tabla.Columns.Add("R1");
-            tabla.Columns.Add("VÁLIDO R1");
-            tabla.Columns.Add("R2");
-            tabla.Columns.Add("VÁLIDO R2");
-            tabla.Columns.Add("R3");
-            tabla.Columns.Add("VÁLIDO R3");
+            for (int i = 1; i <= restricciones.Length; i++)
+            {
+                tabla.Columns.Add("R" + i);
+                tabla.Columns.Add("VÁLIDO R" + i);
+            }
             //FUNCION Z
             tabla.Columns.Add("Z");
             //FUNCION Z OPTIMA
             tabla.Columns.Add("Z OPT");
             //VARIABLES OPTIMAS
-            tabla.Columns.Add("X1 OPT");
-            tabla.Columns.Add("X2 OPT");
+            for (int i = 1; i <= functionZ.variables.Length; i++)
+            {
+                tabla.Columns.Add("X" + i+ " OPT");
+            }
 
             var random = numerosAleatorios.Distribucion;
 
-            String[] vector = new String[15];
+            String[] vector = new String[tabla.Columns.Count];
 
             for (int j = 1; j <= cantIteraciones; j++)
 
@@ -148,88 +151,4 @@ namespace Simulacion
         }
 
     }
-
-    //public DataTable Simular(int CantSemanas, int filasMostrar, int mostrarDesde, Distribuciones cantautos, Distribuciones tipoAuto, Distribuciones ComisionesAL, Distribuciones ComisionesAM, ref double promtotal, ref string textpromparcial)
-    //{
-    //    DataTable tabla = new DataTable(); //Tabla que será devuelta
-    //    tabla.Columns.Add("Semana Numero:");
-    //    tabla.Columns.Add("RND Cant Autos");
-    //    tabla.Columns.Add("Cantidad Autos");
-    //    tabla.Columns.Add("RND Tipo Auto");
-    //    tabla.Columns.Add("Tipo Auto");
-    //    tabla.Columns.Add("RND Comision");
-    //    tabla.Columns.Add("Comision");
-    //    tabla.Columns.Add("Comision Total");
-    //    tabla.Columns.Add("Comision Acumulada");
-    //    tabla.Columns.Add("Vendedor");
-
-    //    var mostrarHasta = mostrarDesde + filasMostrar;
-    //    Random r = new Random();
-    //    double acumtotalvendedor = 0;
-    //    double acum = 0;
-    //    textpromparcial += "Promedio por Semana:\n";
-    //    for (int i = 0; i < 4; i++) //Un bucle por vendedor
-    //    {
-
-    //        String[] vector = new String[10];
-    //        long vendedor = i + 1;
-    //        double promparcial = 0;
-
-
-    //        for (int j = 1; j <= CantSemanas; j++)//bucle por semana
-
-    //        {
-    //            //        Campos en común------------------------------ -
-    //            vector[0] = j.ToString();
-
-    //            double rndCantAuto = cantautos.GenerarRnd(r);
-    //            vector[1] = rndCantAuto.ToString();
-    //            vector[2] = cantautos.ObtenerValorAsociado(rndCantAuto).ToString();
-    //            String rndComisionTexto = "";
-    //            String rndtipoAutoTexto = "";
-    //            String tipoAutoTexto = "";
-    //            String comisionTexto = "";
-    //            double ComisionTotal = 0;
-    //            for (int k = 0; k < int.Parse(vector[2]); k++)
-    //            {
-    //                double rndtipoAuto = tipoAuto.GenerarRnd(r);
-    //                int tipoaut = (int)tipoAuto.ObtenerValorAsociado(rndtipoAuto);
-
-    //                double rndcomision = Math.Truncate(r.NextDouble() * 100);
-    //                double comision = buscarcomision(tipoaut, rndcomision, ComisionesAL, ComisionesAM);
-
-    //                rndtipoAutoTexto += rndtipoAuto.ToString() + Environment.NewLine;
-    //                tipoAutoTexto += buscarTipo(tipoaut) + Environment.NewLine;
-    //                rndComisionTexto += (rndtipoAuto.Equals("1") ? " " : rndcomision.ToString())  + Environment.NewLine;
-    //                comisionTexto += comision + Environment.NewLine;
-
-    //                ComisionTotal = ComisionTotal + comision;
-    //            }
-
-    //            vector[3] = rndtipoAutoTexto.ToString();
-    //            vector[4] = tipoAutoTexto;
-    //            vector[5] = rndComisionTexto;
-    //            vector[6] = comisionTexto;
-    //            vector[7] = ComisionTotal.ToString();
-    //            vector[8] = string.IsNullOrEmpty(vector[8]) ? vector[7] : (double.Parse(vector[8]) + double.Parse(vector[7])).ToString();
-    //            vector[9] = vendedor.ToString();
-
-    //            if (j >= mostrarDesde && j <= mostrarHasta)
-    //                tabla.LoadDataRow(vector, true);
-    //        }
-
-    //        tabla.LoadDataRow(vector, true);
-
-
-
-    //        promparcial = double.Parse(vector[8]) / CantSemanas;//acumulado/cantsemanas
-
-
-    //        acumtotalvendedor += double.Parse(vector[8]);//suma los acumulados
-    //        textpromparcial += "     Vendedor N°" + (i+1) + ": " + promparcial + "\n";
-    //        acum += promparcial;
-    //    }
-    //    promtotal = acum / 4;
-    //    return tabla;
-    //}
 }
