@@ -24,7 +24,7 @@ namespace Simulacion
                 tabla.Columns.Add("RND X"+i);
                 tabla.Columns.Add("X"+i);
             }
-
+            var randomVariables = new double[functionZ.variables.Length];
             //RESTRICCIONES
             for (int i = 1; i <= restricciones.Length; i++)
             {
@@ -48,40 +48,50 @@ namespace Simulacion
             for (int j = 1; j <= cantIteraciones; j++)
 
             {
-                //        Campos en común------------------------------ -
+                //NUMERO ITERACION
                 vector[0] = j.ToString();
 
-                double rndvariable = random.Generar();
-                if (rndvariable < 0) continue;
                 //VARIABLES
-                vector[1] = rndvariable.ToString();
-                vector[2] = Math.Round((decimal)rndvariable, 4).ToString();
+                var posicionVector = 1;
+                for (int i = 0; i < randomVariables.Length; i++)
+                {
+                    double rndvariable = random.Generar();
+                    randomVariables[i] = rndvariable;
+                    vector[posicionVector] = rndvariable.ToString();
+                    posicionVector++;
+                    vector[posicionVector] = Math.Round((decimal)rndvariable, 4).ToString();
+                    posicionVector++;
+                }
 
-                double rndvariable2 = random.Generar();
-                if (rndvariable < 0) continue;
-
-                vector[3] = rndvariable2.ToString();
-                vector[4] = Math.Round((decimal)rndvariable2, 4).ToString();
-
+                ////RESTRICIONES
                 var restriccionesresult = new List<string>();
-                //RESTRICIONES
-                double restriccion1 = double.Parse(vector[2]) * restricciones[0].variables[0] + (double.Parse(vector[4]) * restricciones[0].variables[1]);
-                vector[5] = restriccion1.ToString();
-                var restriccValid1 = GetValidacionRestriccion(restriccion1, restricciones[0]);
-                restriccionesresult.Add(restriccValid1);
-                vector[6] = restriccValid1;
+                for (int i = 0; i < restricciones.Length; i++)
+                {
+                    double restriccionTotal = 0;
+                    for (int h = 0; h < restricciones[i].variables.Length; h++)
+                    {
+                        restriccionTotal += randomVariables[h] * restricciones[i].variables[h];
+                    }
+                    vector[posicionVector] = restriccionTotal.ToString();
+                    posicionVector++;
+                }
+                //double restriccion1 = double.Parse(vector[2]) * restricciones[0].variables[0] + (double.Parse(vector[4]) * restricciones[0].variables[1]);
+                //vector[5] = restriccion1.ToString();
+                //var restriccValid1 = GetValidacionRestriccion(restriccion1, restricciones[0]);
+                //restriccionesresult.Add(restriccValid1);
+                //vector[6] = restriccValid1;
 
-                double restriccion2 = double.Parse(vector[2]) * restricciones[1].variables[0] + (double.Parse(vector[4]) * restricciones[1].variables[1]);
-                vector[7] = restriccion2.ToString();
-                var restriccValid2 = GetValidacionRestriccion(restriccion2, restricciones[1]);
-                restriccionesresult.Add(restriccValid2);
-                vector[8] = restriccValid2;
+                //double restriccion2 = double.Parse(vector[2]) * restricciones[1].variables[0] + (double.Parse(vector[4]) * restricciones[1].variables[1]);
+                //vector[7] = restriccion2.ToString();
+                //var restriccValid2 = GetValidacionRestriccion(restriccion2, restricciones[1]);
+                //restriccionesresult.Add(restriccValid2);
+                //vector[8] = restriccValid2;
 
-                double restriccion3 = (double.Parse(vector[2]) * restricciones[2].variables[0]) + double.Parse(vector[4]) * restricciones[2].variables[1];
-                vector[9] = restriccion3.ToString();
-                var restriccValid3 = GetValidacionRestriccion(restriccion3, restricciones[2]);
-                restriccionesresult.Add(restriccValid3);
-                vector[10] = restriccValid3;
+                //double restriccion3 = (double.Parse(vector[2]) * restricciones[2].variables[0]) + double.Parse(vector[4]) * restricciones[2].variables[1];
+                //vector[9] = restriccion3.ToString();
+                //var restriccValid3 = GetValidacionRestriccion(restriccion3, restricciones[2]);
+                //restriccionesresult.Add(restriccValid3);
+                //vector[10] = restriccValid3;
 
                 //FUNCTION Z
                 var isValid = restriccionesresult.Where(x => x == "NO").FirstOrDefault();
