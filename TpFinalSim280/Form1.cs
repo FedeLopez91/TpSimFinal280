@@ -466,8 +466,8 @@ namespace TpFinalSim280
             //int mostrarDesde = int.Parse(txtMostrarDesde.Text);
             //int cantAMostrar = int.Parse(txtCantMostrar.Text);
 
-            string tipoFuncion = "max";
-            int cantIteraciones = 1000;
+            string tipoFuncion = "MAX";
+            int cantIteraciones = 10000;
             int mostrarDesde = 0;
             int cantAMostrar = 150;
             Restricciones[] restriccionesParam = GetRestriccionesEjemplo();

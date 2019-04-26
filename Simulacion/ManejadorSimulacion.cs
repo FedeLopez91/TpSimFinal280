@@ -24,7 +24,7 @@ namespace Simulacion
                 tabla.Columns.Add("RND X"+i);
                 tabla.Columns.Add("X"+i);
             }
-            var randomVariables = new double[functionZ.variables.Length];
+
             //RESTRICCIONES
             for (int i = 1; i <= restricciones.Length; i++)
             {
@@ -51,19 +51,20 @@ namespace Simulacion
                 //NUMERO ITERACION
                 vector[0] = j.ToString();
 
-                //VARIABLES
+                //CALCULO VARIABLES
+                var randomVariables = new double[functionZ.variables.Length];
                 var posicionVector = 1;
                 for (int i = 0; i < randomVariables.Length; i++)
                 {
                     double rndvariable = random.Generar();
-                    randomVariables[i] = rndvariable;
+                    randomVariables[i] = Math.Round((double)rndvariable, 4);
                     vector[posicionVector] = rndvariable.ToString();
                     posicionVector++;
-                    vector[posicionVector] = Math.Round((decimal)rndvariable, 4).ToString();
+                    vector[posicionVector] = randomVariables[i].ToString();
                     posicionVector++;
                 }
 
-                ////RESTRICIONES
+                ////CALCULO RESTRICIONES
                 var restriccionesresult = new List<string>();
                 for (int i = 0; i < restricciones.Length; i++)
                 {
@@ -72,40 +73,43 @@ namespace Simulacion
                     {
                         restriccionTotal += randomVariables[h] * restricciones[i].variables[h];
                     }
-                    vector[posicionVector] = restriccionTotal.ToString();
+                    vector[posicionVector] = Math.Round((decimal)restriccionTotal, 4).ToString();
+                    posicionVector++;
+                    var restriccValid = GetValidacionRestriccion(restriccionTotal, restricciones[i]);
+                    restriccionesresult.Add(restriccValid);
+                    vector[posicionVector] = restriccValid;
                     posicionVector++;
                 }
-                //double restriccion1 = double.Parse(vector[2]) * restricciones[0].variables[0] + (double.Parse(vector[4]) * restricciones[0].variables[1]);
-                //vector[5] = restriccion1.ToString();
-                //var restriccValid1 = GetValidacionRestriccion(restriccion1, restricciones[0]);
-                //restriccionesresult.Add(restriccValid1);
-                //vector[6] = restriccValid1;
-
-                //double restriccion2 = double.Parse(vector[2]) * restricciones[1].variables[0] + (double.Parse(vector[4]) * restricciones[1].variables[1]);
-                //vector[7] = restriccion2.ToString();
-                //var restriccValid2 = GetValidacionRestriccion(restriccion2, restricciones[1]);
-                //restriccionesresult.Add(restriccValid2);
-                //vector[8] = restriccValid2;
-
-                //double restriccion3 = (double.Parse(vector[2]) * restricciones[2].variables[0]) + double.Parse(vector[4]) * restricciones[2].variables[1];
-                //vector[9] = restriccion3.ToString();
-                //var restriccValid3 = GetValidacionRestriccion(restriccion3, restricciones[2]);
-                //restriccionesresult.Add(restriccValid3);
-                //vector[10] = restriccValid3;
 
                 //FUNCTION Z
-                var isValid = restriccionesresult.Where(x => x == "NO").FirstOrDefault();
-                if (isValid== null)
+                var isValid = restriccionesresult.FirstOrDefault(x => x == "NO");
+                if (isValid == null)
                 {
-                    double funcionZResult = (double.Parse(vector[2]) * functionZ.variables[0]) + (double.Parse(vector[4]) * functionZ.variables[1]) + functionZ.c;
-                    vector[11] = funcionZResult.ToString();
-                    if (string.IsNullOrEmpty(vector[12]) || double.Parse(vector[12]) <= funcionZResult)
+                    double funcionZResult = 0;
+                    for (int i = 0; i < randomVariables.Length; i++)
                     {
-                        vector[12] = funcionZResult.ToString();
-                        vector[13] = vector[4];
-                        vector[14] = vector[2];
+                        funcionZResult += (randomVariables[i]*functionZ.variables[i]);
+                    }
+
+                    funcionZResult += functionZ.c;
+                    vector[posicionVector] = Math.Round((decimal)funcionZResult, 4).ToString();
+                    posicionVector++;
+
+                    if (string.IsNullOrEmpty(vector[posicionVector]) || double.Parse(vector[posicionVector]) <= funcionZResult)
+                    {
+                        vector[posicionVector] = Math.Round((decimal)funcionZResult, 4).ToString();
+                        posicionVector++;
+                        for (int i = 0; i < randomVariables.Length; i++)
+                        {
+                            vector[posicionVector] = randomVariables[i].ToString();
+                            posicionVector++;
+                        }
 
                     }
+                }
+                else
+                {
+                    vector[posicionVector] = "";
                 }
 
                 if (j >= mostrarDesde && j <= mostrarHasta)
