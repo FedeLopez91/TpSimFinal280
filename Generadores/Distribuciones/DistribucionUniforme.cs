@@ -6,11 +6,11 @@ namespace NumerosAleatorios.VariablesAleatorias
 {
     public class DistribucionUniforme : IDistribucion
     {
-        public double A { get; protected set; }
-        public double B { get; protected set; }
+        public float A { get; protected set; }
+        public float B { get; protected set; }
         public IGeneradorNumerosAleatorios Generador { get; protected set; }
 
-        public DistribucionUniforme(double a, double b)
+        public DistribucionUniforme(float a, float b)
         {
             if (b <= a)
                 throw new NotSupportedException("A debe ser menor que B");
@@ -20,7 +20,7 @@ namespace NumerosAleatorios.VariablesAleatorias
             Generador = new GeneradorDelSistema();
         }
 
-        public DistribucionUniforme(double a, double b, IGeneradorNumerosAleatorios generador)
+        public DistribucionUniforme(float a, float b, IGeneradorNumerosAleatorios generador)
         {
             if (b <= a)
                 throw new NotSupportedException("A debe ser menor que B");
@@ -35,7 +35,7 @@ namespace NumerosAleatorios.VariablesAleatorias
             Generador = generador;
         }
 
-        public double Generar()
+        public float Generar()
         {
             var aleatorio = Generador.Generar();
 
@@ -44,9 +44,9 @@ namespace NumerosAleatorios.VariablesAleatorias
             return variable;
         }
 
-        public List<double> Generar(int cantidad)
+        public List<float> Generar(int cantidad)
         {
-            var variables = new List<double>(cantidad);
+            var variables = new List<float>(cantidad);
 
             for (int i = 0; i < cantidad; i++)
             {
@@ -56,13 +56,13 @@ namespace NumerosAleatorios.VariablesAleatorias
             return variables;
         }
 
-        public List<double> FrecuenciasEsperadas(List<Intervalo> intervalos)
+        public List<float> FrecuenciasEsperadas(List<Intervalo> intervalos)
         {
             var n = intervalos.Count;
 
-            var frecuenciaEsperada = 1 / (double)n;
+            var frecuenciaEsperada = 1 / (float)n;
 
-            var frecuencias = new List<double>(n);
+            var frecuencias = new List<float>(n);
 
             for (int i = 0; i < n; i++)
             {

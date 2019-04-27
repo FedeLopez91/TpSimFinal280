@@ -9,17 +9,17 @@ namespace NumerosAleatorios
         public IDistribucion Distribucion { get; protected set; }
         public int TamañoMuestra { get; protected set; }
         public int CantidadIntervalos { get; protected set; }
-        public double Alfa { get; protected set; }
-        public List<double> Valores { get; protected set; }
+        public float Alfa { get; protected set; }
+        public List<float> Valores { get; protected set; }
         public List<Intervalo> Intervalos { get; protected set; }
         public List<int> FrecuenciasObservadasAbsolutas { get; protected set; }
-        public List<double> FrecuenciasObservadasRelativas { get; protected set; }
-        public List<double> FrecuenciasEsperadasAbsolutas { get; protected set; }
-        public List<double> FrecuenciasEsperadasRelativas { get; protected set; }
-        public List<double> ValoresChiCuadrado { get; protected set; }
-        public double TablaChiCuadrado { get; protected set; }
+        public List<float> FrecuenciasObservadasRelativas { get; protected set; }
+        public List<float> FrecuenciasEsperadasAbsolutas { get; protected set; }
+        public List<float> FrecuenciasEsperadasRelativas { get; protected set; }
+        public List<float> ValoresChiCuadrado { get; protected set; }
+        public float TablaChiCuadrado { get; protected set; }
 
-        public GestorEstadistico(IDistribucion distribucion, int tamañoMuestra, int cantidadIntervalos, double alfa)
+        public GestorEstadistico(IDistribucion distribucion, int tamañoMuestra, int cantidadIntervalos, float alfa)
         {
             Distribucion = distribucion;
             TamañoMuestra = tamañoMuestra;
@@ -68,14 +68,14 @@ namespace NumerosAleatorios
         private void CalcularFrecuenciasObservadas()
         {
             var absolutas = new List<int>(CantidadIntervalos);
-            var relativas = new List<double>(CantidadIntervalos);
+            var relativas = new List<float>(CantidadIntervalos);
 
             foreach (var intervalo in Intervalos)
             {
                 var encontrados = Valores.Where(valor => valor >= intervalo.Inicio && valor < intervalo.Fin);
 
                 var absoluta = encontrados.Count();
-                var relativa = (double)absoluta / TamañoMuestra;
+                var relativa = (float)absoluta / TamañoMuestra;
 
                 absolutas.Add(absoluta);
                 relativas.Add(relativa);
@@ -83,7 +83,7 @@ namespace NumerosAleatorios
 
             //Corrección para contar el máximo valor
             absolutas[CantidadIntervalos - 1] += 1;
-            relativas[CantidadIntervalos - 1] = (double)absolutas.Last() / TamañoMuestra;
+            relativas[CantidadIntervalos - 1] = (float)absolutas.Last() / TamañoMuestra;
 
             FrecuenciasObservadasAbsolutas = absolutas;
             FrecuenciasObservadasRelativas = relativas;
@@ -93,7 +93,7 @@ namespace NumerosAleatorios
         {
             var relativas = Distribucion.FrecuenciasEsperadas(Intervalos);
 
-            var absolutas = new List<double>(CantidadIntervalos);
+            var absolutas = new List<float>(CantidadIntervalos);
 
             foreach (var frecuencia in relativas)
             {
@@ -108,7 +108,7 @@ namespace NumerosAleatorios
 
         private void CalcularValoresChiCuadrado()
         {
-            var chiCuadrado = new List<double>();
+            var chiCuadrado = new List<float>();
 
             for (var i = 0; i < CantidadIntervalos; i++)
             {

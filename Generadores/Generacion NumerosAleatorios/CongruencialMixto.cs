@@ -4,12 +4,12 @@ namespace NumerosAleatorios.NumerosAleatorios
 {
     public class CongruencialMixto : IGeneradorNumerosAleatorios
     {
-        public double Semilla { get; protected set; }
-        public double A { get; protected set; }
-        public double C { get; protected set; }
-        public double M { get; protected set; }
+        public float Semilla { get; protected set; }
+        public float A { get; protected set; }
+        public float C { get; protected set; }
+        public float M { get; protected set; }
 
-        public CongruencialMixto(double semilla, double a, double c, double m)
+        public CongruencialMixto(float semilla, float a, float c, float m)
         {
             Semilla = semilla;
             A = a;
@@ -17,7 +17,7 @@ namespace NumerosAleatorios.NumerosAleatorios
             M = m;
         }
 
-        public double Generar()
+        public float Generar()
         {
             var aleatorio = (A * Semilla + C) % M;
 

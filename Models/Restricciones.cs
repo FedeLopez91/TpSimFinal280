@@ -8,13 +8,13 @@ namespace Models
 {
     public class Restricciones
     {
-        public double[] variables;
-        public double b;
+        public float[] variables;
+        public float b;
         public string sign;
 
         public Restricciones() { }
 
-        public Restricciones(double[] variables, double b, string sign)
+        public Restricciones(float[] variables, float b, string sign)
         {
             if (sign == "<=" || sign == "<" || sign == "="  || sign == ">"  || sign == ">=")
             {

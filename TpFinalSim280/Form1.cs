@@ -92,7 +92,7 @@ namespace TpFinalSim280
         {
             int muestra;
             int intervalos;
-            double alfa;
+            float alfa;
 
             if (!int.TryParse(txtCantNro.Text, out muestra)
                 || muestra <= 0)
@@ -110,7 +110,7 @@ namespace TpFinalSim280
                 return false;
             }
 
-            //if (!double.TryParse(txt_chicierto.Text, out alfa)
+            //if (!float.TryParse(txt_chicierto.Text, out alfa)
             //    || alfa <= 0 || alfa >= 1)
             //{
             //    MessageBox.Show(@"El valor de alfa debe estar entre 0 y 1");
@@ -120,17 +120,17 @@ namespace TpFinalSim280
 
             if (rbDUniforme.Checked)
             {
-                double a;
-                double b;
+                float a;
+                float b;
 
-                if (!double.TryParse(txtMargenAU.Text, out a))
+                if (!float.TryParse(txtMargenAU.Text, out a))
                 {
                     MessageBox.Show(@"El valor de A debe ser un número válido");
                     txtMargenAU.Focus();
                     return false;
                 }
 
-                if (!double.TryParse(txtMargenBU.Text, out b) || b <= a)
+                if (!float.TryParse(txtMargenBU.Text, out b) || b <= a)
                 {
                     MessageBox.Show(@"El valor de B debe ser mayor que A");
                     txtMargenBU.Focus();
@@ -140,17 +140,17 @@ namespace TpFinalSim280
 
             if (rbDNormal.Checked)
             {
-                double media;
-                double varianza;
+                float media;
+                float varianza;
 
-                if (!double.TryParse(txtMedia.Text, out media))
+                if (!float.TryParse(txtMedia.Text, out media))
                 {
                     MessageBox.Show(@"La Media debe ser un número válido");
                     txtMedia.Focus();
                     return false;
                 }
 
-                if (!double.TryParse(txtVarianza.Text, out varianza) || varianza < 0)
+                if (!float.TryParse(txtVarianza.Text, out varianza) || varianza < 0)
                 {
                     MessageBox.Show(@"La Varianza no puede ser negativa");
                     txtVarianza.Focus();
@@ -160,9 +160,9 @@ namespace TpFinalSim280
 
             if (rbDExponencial.Checked)
             {
-                double lambda;
+                float lambda;
 
-                if (!double.TryParse(txtLambda.Text, out lambda) || lambda <= 0)
+                if (!float.TryParse(txtLambda.Text, out lambda) || lambda <= 0)
                 {
                     MessageBox.Show(@"La Varianza debe ser positiva");
                     txtLambda.Focus();
@@ -286,7 +286,7 @@ namespace TpFinalSim280
             {
                 var a = int.Parse(txtMultiplicativoA.Text);
                 var m = int.Parse(txtDivisorM.Text);
-                var semilla = double.Parse(txtSemillaA.Text);
+                var semilla = float.Parse(txtSemillaA.Text);
 
                 //Congruencial Multiplicativo : Xn = (A * Xn-1 ) Mod M
                 if (rbGCMultiplicativo.Checked)
@@ -304,30 +304,30 @@ namespace TpFinalSim280
 
             if (rbDUniforme.Checked)
             {
-                var a = double.Parse(txtMargenAU.Text);
-                var b = double.Parse(txtMargenBU.Text);
+                var a = float.Parse(txtMargenAU.Text);
+                var b = float.Parse(txtMargenBU.Text);
 
                 IDistribucion = new DistribucionUniforme(a, b, IGeneradorAleatorio);
             }
 
             if (rbDNormal.Checked)
             {
-                var media = double.Parse(txtMedia.Text);
-                var varianza = double.Parse(txtVarianza.Text);
+                var media = float.Parse(txtMedia.Text);
+                var varianza = float.Parse(txtVarianza.Text);
 
                 IDistribucion = new DistribucionNormal(media, varianza, IGeneradorAleatorio);
             }
 
             if (rbDExponencial.Checked)
             {
-                var lambda = double.Parse(txtLambda.Text);
+                var lambda = float.Parse(txtLambda.Text);
 
                 IDistribucion = new DistribucionExponencialNegativa(lambda, IGeneradorAleatorio);
             }
 
             var tamañoMuestra = int.Parse(txtCantNro.Text);
             var cantidadIntervalos = int.Parse(txtIntervalos.Text);
-            var alfa = 0.5;
+            var alfa = (float)0.5;
 
             try
             {
@@ -467,11 +467,11 @@ namespace TpFinalSim280
             //int cantAMostrar = int.Parse(txtCantMostrar.Text);
 
             string tipoFuncion = "MAX";
-            int cantIteraciones = 10000;
+            int cantIteraciones = 100;
             int mostrarDesde = 0;
             int cantAMostrar = 150;
             Restricciones[] restriccionesParam = GetRestriccionesEjemplo();
-            FunctionZ funcionZ = new FunctionZ(new double[2] { 1, 1 }, 120);
+            FunctionZ funcionZ = new FunctionZ(new float[2] { 1, 1 }, 120);
 
             GenerarNumeros();
 
@@ -493,12 +493,12 @@ namespace TpFinalSim280
             Restricciones[] restricciones = new Restricciones[nroRestricciones];
             for (int i = 0; i < nroRestricciones; i++)
             {
-                double[] variables = new double[nroVariables];
-                double b = Convert.ToDouble(dgvRestriciones.Rows[i].Cells[nroVariables + 1].Value);
+                float[] variables = new float[nroVariables];
+                float b = (float)(dgvRestriciones.Rows[i].Cells[nroVariables + 1].Value);
                 string signo = Convert.ToString(dgvRestriciones.Rows[i].Cells[nroVariables].Value);
                 for (int j = 0; j < nroVariables; j++)
                 {
-                    variables[j] = Convert.ToDouble(dgvRestriciones.Rows[i].Cells[j].Value);
+                    variables[j] = (float)(dgvRestriciones.Rows[i].Cells[j].Value);
                 }
                 restricciones[i] = new Restricciones(variables, b, signo);
             }
@@ -508,12 +508,12 @@ namespace TpFinalSim280
 
         private FunctionZ GetFunctionZ()
         {
-            double[] variablesFuncion = new double[nroVariables];
+            float[] variablesFuncion = new float[nroVariables];
             for (int i = 0; i < nroVariables; i++)
             {
-                variablesFuncion[i] = Convert.ToDouble(dgvFuncionZ.Rows[0].Cells[i].Value);
+                variablesFuncion[i] = (float)(dgvFuncionZ.Rows[0].Cells[i].Value);
             }
-            double c = Convert.ToDouble(dgvFuncionZ.Rows[0].Cells[nroVariables].Value);
+            float c = (float)(dgvFuncionZ.Rows[0].Cells[nroVariables].Value);
 
             //bool isExtrMax = extrComboBox.SelectedIndex == 0;
 
@@ -544,17 +544,17 @@ namespace TpFinalSim280
             Restricciones r1 = new Restricciones();
             r1.sign = "<=";
             r1.b = 70;
-            r1.variables = new double[2] { 1, 0 };
+            r1.variables = new float[2] { 1, 0 };
 
             Restricciones r2 = new Restricciones();
             r2.sign = "<=";
             r2.b = 50;
-            r2.variables = new double[2] { 0, 1 };
+            r2.variables = new float[2] { 0, 1 };
 
             Restricciones r3 = new Restricciones();
             r3.sign = "<=";
             r3.b = 120;
-            r3.variables = new double[2] { 1, 1 };
+            r3.variables = new float[2] { 1, 1 };
 
             restriccionesArray[0] = r1;
             restriccionesArray[1] = r2;

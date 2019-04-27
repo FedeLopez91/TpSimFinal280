@@ -5,11 +5,11 @@ namespace NumerosAleatorios.NumerosAleatorios
 {
      public class GeneradorDelSistema : IGeneradorNumerosAleatorios
     {
-        public double Generar()
+        public float Generar()
         {
             Thread.Sleep(20); // Para que la semilla sea distinta
 
-            var aleatorio = new Random().NextDouble();
+            var aleatorio = (float)new Random().NextDouble();
 
             return aleatorio;
         }

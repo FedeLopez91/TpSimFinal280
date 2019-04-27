@@ -8,18 +8,18 @@ namespace Models
 {
     public class FunctionZ
     {
-        public double[] variables;
-        public double c;
+        public float[] variables;
+        public float c;
         public bool isExtrMax;
 
-        public FunctionZ(double[] variables, double c, bool isExtrMax)
+        public FunctionZ(float[] variables, float c, bool isExtrMax)
         {
             this.variables = variables;
             this.c = c;
             this.isExtrMax = isExtrMax;
         }
 
-        public FunctionZ(double[] variables, double c)
+        public FunctionZ(float[] variables, float c)
         {
             this.variables = variables;
             this.c = c;

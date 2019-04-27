@@ -2,7 +2,7 @@
 {
     public interface IGeneradorNumerosAleatorios
     {
-        double Generar();
+        float Generar();
         int Generar(int cifras);
     }
 }

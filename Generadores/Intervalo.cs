@@ -4,10 +4,10 @@ namespace NumerosAleatorios
 {
     public class Intervalo
     {
-        public double Inicio { get; set; }
-        public double Fin { get; set; }
+        public float Inicio { get; set; }
+        public float Fin { get; set; }
 
-        public Intervalo(double inicio, double fin)
+        public Intervalo(float inicio, float fin)
         {
             if (fin <= inicio)
                 throw new NotSupportedException("El fin del intervalo debe ser superior al inicio");

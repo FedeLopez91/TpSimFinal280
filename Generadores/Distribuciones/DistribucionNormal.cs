@@ -7,11 +7,11 @@ namespace NumerosAleatorios.VariablesAleatorias
 {
     public class DistribucionNormal : IDistribucion
     {
-        public double Media { get; protected set; }
-        public double Varianza { get; protected set; }
+        public float Media { get; protected set; }
+        public float Varianza { get; protected set; }
         public IGeneradorNumerosAleatorios Generador { get; protected set; }
 
-        public DistribucionNormal(double media, double varianza)
+        public DistribucionNormal(float media, float varianza)
         {
             if (varianza < 0)
                 throw new NotSupportedException("La varianza no puede ser negativa");
@@ -20,7 +20,7 @@ namespace NumerosAleatorios.VariablesAleatorias
             Varianza = varianza;
             Generador = new GeneradorDelSistema();
         }
-        public DistribucionNormal(double media, double varianza, IGeneradorNumerosAleatorios generador)
+        public DistribucionNormal(float media, float varianza, IGeneradorNumerosAleatorios generador)
         {
             if (varianza < 0)
                 throw new NotSupportedException("La varianza no puede ser negativa");
@@ -35,7 +35,7 @@ namespace NumerosAleatorios.VariablesAleatorias
             Generador = generador;
         }
 
-        public double Generar()
+        public float Generar()
         {
             var aleatorio1 = Generador.Generar();
             var aleatorio2 = Generador.Generar();
@@ -44,12 +44,12 @@ namespace NumerosAleatorios.VariablesAleatorias
 
             var variable = Media + z * Varianza;
 
-            return variable;
+            return (float)variable;
         }
 
-        public List<double> Generar(int cantidad)
+        public List<float> Generar(int cantidad)
         {
-            var variables = new List<double>(cantidad);
+            var variables = new List<float>(cantidad);
 
             for (int i = 0; i < cantidad; i++)
             {
@@ -59,9 +59,9 @@ namespace NumerosAleatorios.VariablesAleatorias
             return variables;
         }
 
-        public List<double> FrecuenciasEsperadas(List<Intervalo> intervalos)
+        public List<float> FrecuenciasEsperadas(List<Intervalo> intervalos)
         {
-            var frecuencias = new List<double>(intervalos.Count);
+            var frecuencias = new List<float>(intervalos.Count);
 
             var d = new NormalDistribution(Media, Varianza);
 
@@ -69,7 +69,7 @@ namespace NumerosAleatorios.VariablesAleatorias
             {
                 var frecuencia = d.LeftProbability(intervalo.Fin) - d.LeftProbability(intervalo.Inicio);
 
-                frecuencias.Add(frecuencia);
+                frecuencias.Add((float)frecuencia);
             }
 
             return frecuencias;

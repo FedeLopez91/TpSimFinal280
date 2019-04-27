@@ -7,10 +7,10 @@ namespace NumerosAleatorios.VariablesAleatorias
 {
     public class DistribucionExponencialNegativa : IDistribucion
     {
-        public double Lambda { get; protected set; }
+        public float Lambda { get; protected set; }
         public IGeneradorNumerosAleatorios Generador { get; protected set; }
 
-        public DistribucionExponencialNegativa(double lambda)
+        public DistribucionExponencialNegativa(float lambda)
         {
             if (lambda <= 0)
                 throw new NotSupportedException("Lambda debe ser un número positivo");
@@ -19,7 +19,7 @@ namespace NumerosAleatorios.VariablesAleatorias
             Generador = new GeneradorDelSistema();
         }
 
-        public DistribucionExponencialNegativa(double lambda, IGeneradorNumerosAleatorios generador)
+        public DistribucionExponencialNegativa(float lambda, IGeneradorNumerosAleatorios generador)
         {
             if (lambda <= 0)
                 throw new NotSupportedException("Lambda debe ser un número positivo");
@@ -33,19 +33,19 @@ namespace NumerosAleatorios.VariablesAleatorias
             Generador = generador;
         }
 
-        public double Generar()
+        public float Generar()
         {
             //x=-1/lambda*ln(1-r1)
             var aleatorio = Generador.Generar();
 
             var variable = (-1 / Lambda) * Math.Log(1 - aleatorio);
 
-            return variable;
+            return (float)variable;
         }
 
-        public List<double> Generar(int cantidad)
+        public List<float> Generar(int cantidad)
         {
-            var variables = new List<double>(cantidad);
+            var variables = new List<float>(cantidad);
 
             for (int i = 0; i < cantidad; i++)
             {
@@ -55,9 +55,9 @@ namespace NumerosAleatorios.VariablesAleatorias
             return variables;
         }
 
-        public List<double> FrecuenciasEsperadas(List<Intervalo> intervalos)
+        public List<float> FrecuenciasEsperadas(List<Intervalo> intervalos)
         {
-            var frecuencias = new List<double>(intervalos.Count);
+            var frecuencias = new List<float>(intervalos.Count);
 
             var d = new ExponentialDistribution(1/Lambda);
 
@@ -65,7 +65,7 @@ namespace NumerosAleatorios.VariablesAleatorias
             {
                 var frecuencia = d.LeftProbability(intervalo.Fin) - d.LeftProbability(intervalo.Inicio);
 
-                frecuencias.Add(frecuencia);
+                frecuencias.Add((float)frecuencia);
             }
 
             return frecuencias;
