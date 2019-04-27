@@ -190,7 +190,6 @@ namespace TpFinalSim280
             txtLambda.Text = "";
         }
 
-
         private void HabilitarGeneracion()
         {
             var generador = rbGCMixto.Checked || rbGCMultiplicativo.Checked || rbGSistema.Checked;
@@ -446,12 +445,12 @@ namespace TpFinalSim280
 
         }
 
+
         private void btnSimularClick(object sender, EventArgs e)
         {
             ProcesarParametros();
 
         }
-
 
         private void ProcesarParametros()
         {
@@ -467,6 +466,7 @@ namespace TpFinalSim280
             //int cantAMostrar = int.Parse(txtCantMostrar.Text);
 
             string tipoFuncion = "MAX";
+            //string tipoFuncion = "MIN";
             int cantIteraciones = 100;
             int mostrarDesde = 0;
             int cantAMostrar = 150;
@@ -515,8 +515,6 @@ namespace TpFinalSim280
             }
             float c = (float)(dgvFuncionZ.Rows[0].Cells[nroVariables].Value);
 
-            //bool isExtrMax = extrComboBox.SelectedIndex == 0;
-
             FunctionZ functionZ = new FunctionZ(variablesFuncion, c);
 
             return functionZ;
@@ -525,14 +523,15 @@ namespace TpFinalSim280
 
         private void Simular(string tipoFuncion, int cantIteraciones, int mostrarDesde, int cantAMostrar, Restricciones[] restricciones, FunctionZ funcionZ, GestorEstadistico numerosAleatorios)
         {
-            var a = new ManejadorSimulacion().Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restricciones, funcionZ, gestor);
 
-            dgvResultados.DataSource = a;
+            dgvResultados.DataSource = new ManejadorSimulacion().Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restricciones, funcionZ, gestor);
 
             dgvResultados.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvResultados.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvResultados.ColumnHeadersDefaultCellStyle.Font = new Font(dgvResultados.Font, FontStyle.Bold);
+            dgvResultados.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            dgvResultados.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            //lblResultado.Text = "Comisión promedio de los vendedores en una semana: " + promtotal.ToString();
-            //lblpromparcial.Text = textpromparc;
             tabParametros.SelectTab(tabResult);
 
 

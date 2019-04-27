@@ -101,18 +101,36 @@ namespace Simulacion
                         funcionZResult += functionZ.c;
                         vector[posicionVector] = Math.Round(funcionZResult, 4).ToString();
                         posicionVector++;
-
-                        if (string.IsNullOrEmpty(vector[posicionVector]) || float.Parse(vector[posicionVector]) <= funcionZResult)
+                        if (tipoFuncion == "MAX")
                         {
-                            vector[posicionVector] = Math.Round(funcionZResult, 4).ToString();
-                            posicionVector++;
-                            for (int i = 0; i < randomVariables.Length; i++)
+                            if (string.IsNullOrEmpty(vector[posicionVector]) || float.Parse(vector[posicionVector]) <= funcionZResult)
                             {
-                                vector[posicionVector] = randomVariables[i].ToString();
+                                vector[posicionVector] = Math.Round(funcionZResult, 4).ToString();
                                 posicionVector++;
+                                for (int i = 0; i < randomVariables.Length; i++)
+                                {
+                                    vector[posicionVector] = randomVariables[i].ToString();
+                                    posicionVector++;
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(vector[posicionVector]) || float.Parse(vector[posicionVector]) >= funcionZResult)
+                            {
+                                vector[posicionVector] = Math.Round(funcionZResult, 4).ToString();
+                                posicionVector++;
+                                for (int i = 0; i < randomVariables.Length; i++)
+                                {
+                                    vector[posicionVector] = randomVariables[i].ToString();
+                                    posicionVector++;
+                                }
+
                             }
 
                         }
+
                     }
                     else
                     {
