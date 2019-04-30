@@ -96,7 +96,11 @@ namespace TpFinalSim280
             this.tabParametros = new System.Windows.Forms.TabControl();
             this.tabParam = new System.Windows.Forms.TabPage();
             this.tabResult = new System.Windows.Forms.TabPage();
+            this.txtFuncionZDisplay = new System.Windows.Forms.RichTextBox();
             this.dgvResultados = new System.Windows.Forms.DataGridView();
+            this.txtRestriccionesDisplay = new System.Windows.Forms.RichTextBox();
+            this.txtVariablesOptimas = new System.Windows.Forms.RichTextBox();
+            this.txtZOptima = new System.Windows.Forms.RichTextBox();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -765,6 +769,10 @@ namespace TpFinalSim280
             // 
             this.tabResult.AccessibleName = "tabResultados";
             this.tabResult.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabResult.Controls.Add(this.txtVariablesOptimas);
+            this.tabResult.Controls.Add(this.txtZOptima);
+            this.tabResult.Controls.Add(this.txtRestriccionesDisplay);
+            this.tabResult.Controls.Add(this.txtFuncionZDisplay);
             this.tabResult.Controls.Add(this.dgvResultados);
             this.tabResult.Location = new System.Drawing.Point(4, 25);
             this.tabResult.Name = "tabResult";
@@ -772,6 +780,15 @@ namespace TpFinalSim280
             this.tabResult.Size = new System.Drawing.Size(1478, 711);
             this.tabResult.TabIndex = 1;
             this.tabResult.Text = "Resultados";
+            // 
+            // txtFuncionZDisplay
+            // 
+            this.txtFuncionZDisplay.Enabled = false;
+            this.txtFuncionZDisplay.Location = new System.Drawing.Point(42, 22);
+            this.txtFuncionZDisplay.Name = "txtFuncionZDisplay";
+            this.txtFuncionZDisplay.Size = new System.Drawing.Size(453, 32);
+            this.txtFuncionZDisplay.TabIndex = 1;
+            this.txtFuncionZDisplay.Text = "";
             // 
             // dgvResultados
             // 
@@ -781,6 +798,33 @@ namespace TpFinalSim280
             this.dgvResultados.RowTemplate.Height = 24;
             this.dgvResultados.Size = new System.Drawing.Size(1436, 562);
             this.dgvResultados.TabIndex = 0;
+            // 
+            // txtRestriccionesDisplay
+            // 
+            this.txtRestriccionesDisplay.Enabled = false;
+            this.txtRestriccionesDisplay.Location = new System.Drawing.Point(42, 60);
+            this.txtRestriccionesDisplay.Name = "txtRestriccionesDisplay";
+            this.txtRestriccionesDisplay.Size = new System.Drawing.Size(453, 77);
+            this.txtRestriccionesDisplay.TabIndex = 2;
+            this.txtRestriccionesDisplay.Text = "";
+            // 
+            // txtVariablesOptimas
+            // 
+            this.txtVariablesOptimas.Enabled = false;
+            this.txtVariablesOptimas.Location = new System.Drawing.Point(658, 60);
+            this.txtVariablesOptimas.Name = "txtVariablesOptimas";
+            this.txtVariablesOptimas.Size = new System.Drawing.Size(453, 77);
+            this.txtVariablesOptimas.TabIndex = 4;
+            this.txtVariablesOptimas.Text = "";
+            // 
+            // txtZOptima
+            // 
+            this.txtZOptima.Enabled = false;
+            this.txtZOptima.Location = new System.Drawing.Point(658, 22);
+            this.txtZOptima.Name = "txtZOptima";
+            this.txtZOptima.Size = new System.Drawing.Size(453, 32);
+            this.txtZOptima.TabIndex = 3;
+            this.txtZOptima.Text = "";
             // 
             // Form1
             // 
@@ -882,6 +926,10 @@ namespace TpFinalSim280
         private TabPage tabParam;
         private TabPage tabResult;
         private DataGridView dgvResultados;
+        private RichTextBox txtFuncionZDisplay;
+        private RichTextBox txtRestriccionesDisplay;
+        private RichTextBox txtVariablesOptimas;
+        private RichTextBox txtZOptima;
     }
 }
 

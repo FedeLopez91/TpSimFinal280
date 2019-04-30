@@ -11,10 +11,10 @@ namespace Simulacion
     public class ManejadorSimulacion
     {
 
-        public DataTable Simular(string tipoFuncion, int cantIteraciones, int mostrarDesde, int cantAMostrar, Restricciones[] restricciones, FunctionZ functionZ, GestorEstadistico numerosAleatorios)
+        public DataTable Simular(string tipoFuncion, int cantIteraciones, int mostrarDesde, int cantAMostrar, Restricciones[] restricciones, FunctionZ functionZ, GestorEstadistico numerosAleatorios, ref float[] variablesOptimas, ref float zOptima)
         {
             DataTable tabla = new DataTable();
-            var mostrarHasta = mostrarDesde + cantAMostrar;
+            int mostrarHasta = mostrarDesde + cantAMostrar;
 
             //NRO ITERACION
             tabla.Columns.Add("#");
@@ -106,10 +106,12 @@ namespace Simulacion
                             if (string.IsNullOrEmpty(vector[posicionVector]) || float.Parse(vector[posicionVector]) <= funcionZResult)
                             {
                                 vector[posicionVector] = Math.Round(funcionZResult, 4).ToString();
+                                zOptima = (float) Math.Round(funcionZResult, 4);
                                 posicionVector++;
                                 for (int i = 0; i < randomVariables.Length; i++)
                                 {
                                     vector[posicionVector] = randomVariables[i].ToString();
+                                    variablesOptimas[i] = randomVariables[i];
                                     posicionVector++;
                                 }
 
@@ -120,17 +122,18 @@ namespace Simulacion
                             if (string.IsNullOrEmpty(vector[posicionVector]) || float.Parse(vector[posicionVector]) >= funcionZResult)
                             {
                                 vector[posicionVector] = Math.Round(funcionZResult, 4).ToString();
+                                zOptima = (float)Math.Round(funcionZResult, 4);
                                 posicionVector++;
                                 for (int i = 0; i < randomVariables.Length; i++)
                                 {
                                     vector[posicionVector] = randomVariables[i].ToString();
+                                    variablesOptimas[i] = randomVariables[i];
                                     posicionVector++;
                                 }
 
                             }
 
                         }
-
                     }
                     else
                     {

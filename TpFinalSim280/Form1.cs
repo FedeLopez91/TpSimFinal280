@@ -24,7 +24,7 @@ namespace TpFinalSim280
         private int nroRestricciones;
         private int nroVariables;
         private const int Decimales = 4;
-        private ManejadorSimulacion manejador;
+        // private ManejadorSimulacion manejador;
 
         public Form1()
         {
@@ -523,8 +523,12 @@ namespace TpFinalSim280
 
         private void Simular(string tipoFuncion, int cantIteraciones, int mostrarDesde, int cantAMostrar, Restricciones[] restricciones, FunctionZ funcionZ, GestorEstadistico numerosAleatorios)
         {
+            float[] variablesOptimas = new float[funcionZ.variables.Length];
+            float zOptima = 0;
+            txtFuncionZDisplay.Text = GetFuncionZDisplay(funcionZ, tipoFuncion);
+            txtRestriccionesDisplay.Text = GetRestrincionesDisplay(restricciones);
 
-            dgvResultados.DataSource = new ManejadorSimulacion().Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restricciones, funcionZ, gestor);
+            dgvResultados.DataSource = new ManejadorSimulacion().Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restricciones, funcionZ, gestor, ref variablesOptimas, ref zOptima);
 
             dgvResultados.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvResultados.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -534,7 +538,56 @@ namespace TpFinalSim280
 
             tabParametros.SelectTab(tabResult);
 
+            txtVariablesOptimas.Text = GetVariablesOptimasDisplay(variablesOptimas);
+            txtZOptima.Text = "Z(X)= " + zOptima.ToString();
 
+        }
+
+        private string GetVariablesOptimasDisplay(float[] variables)
+        {
+            string variablesResult = "";
+            for (int i = 0; i < variables.Length; i++)
+            {
+                variablesResult += "X" + (i + 1) + "= " + variables[i] + "\n";
+            }
+            return variablesResult;
+        }
+
+        private string GetFuncionZDisplay(FunctionZ functionZ, string tipoFuncion)
+        {
+            string funcionZDisplay = tipoFuncion.ToUpper() + "(Z)= ";
+
+            for (int i = 0; i < functionZ.variables.Length; i++)
+            {
+                funcionZDisplay += functionZ.variables[i] + "X" + (i + 1) + "+";
+            }
+            if (functionZ.c > 0)
+            {
+                funcionZDisplay += functionZ.c;
+            }
+            else
+            {
+                funcionZDisplay = funcionZDisplay.Substring(0, funcionZDisplay.Length - 1);
+            }
+
+            return funcionZDisplay;
+        }
+
+        private string GetRestrincionesDisplay(Restricciones[] restricciones)
+        {
+            string restriccionesDisplay = "SA: " + "\t";
+
+            for (int i = 0; i < restricciones.Length; i++)
+            {
+                for (int j = 0; j < restricciones[i].variables.Length; j++)
+                {
+                    restriccionesDisplay += restricciones[i].variables[j] + "X" + (j + 1) + "+";
+                }
+                restriccionesDisplay = restriccionesDisplay.Substring(0, restriccionesDisplay.Length - 1);
+                restriccionesDisplay += restricciones[i].sign + " " + restricciones[i].b + "\n" + "\t";
+            }
+            restriccionesDisplay += lblcondionZero.Text;
+            return restriccionesDisplay;
         }
 
         private Restricciones[] GetRestriccionesEjemplo()
