@@ -101,6 +101,8 @@ namespace TpFinalSim280
             this.txtRestriccionesDisplay = new System.Windows.Forms.RichTextBox();
             this.txtVariablesOptimas = new System.Windows.Forms.RichTextBox();
             this.txtZOptima = new System.Windows.Forms.RichTextBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -116,6 +118,8 @@ namespace TpFinalSim280
             this.tabParam.SuspendLayout();
             this.tabResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).BeginInit();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox5
@@ -743,7 +747,7 @@ namespace TpFinalSim280
             this.tabParametros.Location = new System.Drawing.Point(13, 11);
             this.tabParametros.Name = "tabParametros";
             this.tabParametros.SelectedIndex = 0;
-            this.tabParametros.Size = new System.Drawing.Size(1486, 740);
+            this.tabParametros.Size = new System.Drawing.Size(1511, 790);
             this.tabParametros.TabIndex = 18;
             // 
             // tabParam
@@ -761,7 +765,7 @@ namespace TpFinalSim280
             this.tabParam.Location = new System.Drawing.Point(4, 25);
             this.tabParam.Name = "tabParam";
             this.tabParam.Padding = new System.Windows.Forms.Padding(3);
-            this.tabParam.Size = new System.Drawing.Size(1478, 711);
+            this.tabParam.Size = new System.Drawing.Size(1720, 761);
             this.tabParam.TabIndex = 0;
             this.tabParam.Text = "Parámetros";
             // 
@@ -769,22 +773,20 @@ namespace TpFinalSim280
             // 
             this.tabResult.AccessibleName = "tabResultados";
             this.tabResult.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabResult.Controls.Add(this.txtVariablesOptimas);
-            this.tabResult.Controls.Add(this.txtZOptima);
-            this.tabResult.Controls.Add(this.txtRestriccionesDisplay);
-            this.tabResult.Controls.Add(this.txtFuncionZDisplay);
+            this.tabResult.Controls.Add(this.groupBox10);
+            this.tabResult.Controls.Add(this.groupBox9);
             this.tabResult.Controls.Add(this.dgvResultados);
             this.tabResult.Location = new System.Drawing.Point(4, 25);
             this.tabResult.Name = "tabResult";
             this.tabResult.Padding = new System.Windows.Forms.Padding(3);
-            this.tabResult.Size = new System.Drawing.Size(1478, 711);
+            this.tabResult.Size = new System.Drawing.Size(1503, 761);
             this.tabResult.TabIndex = 1;
             this.tabResult.Text = "Resultados";
             // 
             // txtFuncionZDisplay
             // 
             this.txtFuncionZDisplay.Enabled = false;
-            this.txtFuncionZDisplay.Location = new System.Drawing.Point(42, 22);
+            this.txtFuncionZDisplay.Location = new System.Drawing.Point(6, 21);
             this.txtFuncionZDisplay.Name = "txtFuncionZDisplay";
             this.txtFuncionZDisplay.Size = new System.Drawing.Size(453, 32);
             this.txtFuncionZDisplay.TabIndex = 1;
@@ -793,16 +795,16 @@ namespace TpFinalSim280
             // dgvResultados
             // 
             this.dgvResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResultados.Location = new System.Drawing.Point(19, 143);
+            this.dgvResultados.Location = new System.Drawing.Point(6, 158);
             this.dgvResultados.Name = "dgvResultados";
             this.dgvResultados.RowTemplate.Height = 24;
-            this.dgvResultados.Size = new System.Drawing.Size(1436, 562);
+            this.dgvResultados.Size = new System.Drawing.Size(1480, 597);
             this.dgvResultados.TabIndex = 0;
             // 
             // txtRestriccionesDisplay
             // 
             this.txtRestriccionesDisplay.Enabled = false;
-            this.txtRestriccionesDisplay.Location = new System.Drawing.Point(42, 60);
+            this.txtRestriccionesDisplay.Location = new System.Drawing.Point(6, 59);
             this.txtRestriccionesDisplay.Name = "txtRestriccionesDisplay";
             this.txtRestriccionesDisplay.Size = new System.Drawing.Size(453, 77);
             this.txtRestriccionesDisplay.TabIndex = 2;
@@ -811,7 +813,7 @@ namespace TpFinalSim280
             // txtVariablesOptimas
             // 
             this.txtVariablesOptimas.Enabled = false;
-            this.txtVariablesOptimas.Location = new System.Drawing.Point(658, 60);
+            this.txtVariablesOptimas.Location = new System.Drawing.Point(6, 59);
             this.txtVariablesOptimas.Name = "txtVariablesOptimas";
             this.txtVariablesOptimas.Size = new System.Drawing.Size(453, 77);
             this.txtVariablesOptimas.TabIndex = 4;
@@ -820,20 +822,45 @@ namespace TpFinalSim280
             // txtZOptima
             // 
             this.txtZOptima.Enabled = false;
-            this.txtZOptima.Location = new System.Drawing.Point(658, 22);
+            this.txtZOptima.Location = new System.Drawing.Point(6, 21);
             this.txtZOptima.Name = "txtZOptima";
             this.txtZOptima.Size = new System.Drawing.Size(453, 32);
             this.txtZOptima.TabIndex = 3;
             this.txtZOptima.Text = "";
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.txtFuncionZDisplay);
+            this.groupBox9.Controls.Add(this.txtRestriccionesDisplay);
+            this.groupBox9.Location = new System.Drawing.Point(6, 6);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(467, 146);
+            this.groupBox9.TabIndex = 5;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Problema Analizado";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.txtZOptima);
+            this.groupBox10.Controls.Add(this.txtVariablesOptimas);
+            this.groupBox10.Location = new System.Drawing.Point(499, 6);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(467, 146);
+            this.groupBox10.TabIndex = 6;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Resultados";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1502, 763);
+            this.ClientSize = new System.Drawing.Size(1531, 822);
             this.Controls.Add(this.tabParametros);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SIM: TP final. Ejercicio 280 - Federico Lopez - Legajo: 55025";
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -856,6 +883,8 @@ namespace TpFinalSim280
             this.tabParam.ResumeLayout(false);
             this.tabResult.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).EndInit();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -930,6 +959,8 @@ namespace TpFinalSim280
         private RichTextBox txtRestriccionesDisplay;
         private RichTextBox txtVariablesOptimas;
         private RichTextBox txtZOptima;
+        private GroupBox groupBox10;
+        private GroupBox groupBox9;
     }
 }
 
