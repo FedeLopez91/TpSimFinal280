@@ -36,7 +36,7 @@ namespace TpFinalSim280
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gbDistribucion = new System.Windows.Forms.GroupBox();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.txtLambda = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@ namespace TpFinalSim280
             this.rbDExponencial = new System.Windows.Forms.RadioButton();
             this.rbDNormal = new System.Windows.Forms.RadioButton();
             this.rbDUniforme = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gbGeneradores = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtSumatorioC = new System.Windows.Forms.TextBox();
             this.txtIntervalos = new System.Windows.Forms.TextBox();
@@ -72,7 +72,7 @@ namespace TpFinalSim280
             this.dgvResultadosDistribucion = new System.Windows.Forms.DataGridView();
             this.posicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbParamModelo = new System.Windows.Forms.GroupBox();
             this.btnParamModelo = new System.Windows.Forms.Button();
             this.cmbFuncion = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -103,12 +103,15 @@ namespace TpFinalSim280
             this.txtZOptima = new System.Windows.Forms.RichTextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.rbGeneradores = new System.Windows.Forms.RadioButton();
+            this.rbDistribucion = new System.Windows.Forms.RadioButton();
+            this.gbDistribucion.SuspendLayout();
+            this.gbGeneradores.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultadosDistribucion)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            this.gbParamModelo.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncionZ)).BeginInit();
             this.groupBox7.SuspendLayout();
@@ -120,51 +123,54 @@ namespace TpFinalSim280
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).BeginInit();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox5
+            // gbDistribucion
             // 
-            this.groupBox5.Controls.Add(this.btnGenerar);
-            this.groupBox5.Controls.Add(this.txtLambda);
-            this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Controls.Add(this.txtVarianza);
-            this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.txtMedia);
-            this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.txtMargenBU);
-            this.groupBox5.Controls.Add(this.label7);
-            this.groupBox5.Controls.Add(this.txtMargenAU);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.rbDExponencial);
-            this.groupBox5.Controls.Add(this.rbDNormal);
-            this.groupBox5.Controls.Add(this.rbDUniforme);
-            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(884, 17);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.groupBox5.Size = new System.Drawing.Size(515, 183);
-            this.groupBox5.TabIndex = 12;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Distribución: ";
+            this.gbDistribucion.Controls.Add(this.btnGenerar);
+            this.gbDistribucion.Controls.Add(this.txtLambda);
+            this.gbDistribucion.Controls.Add(this.label10);
+            this.gbDistribucion.Controls.Add(this.txtVarianza);
+            this.gbDistribucion.Controls.Add(this.label9);
+            this.gbDistribucion.Controls.Add(this.txtMedia);
+            this.gbDistribucion.Controls.Add(this.label8);
+            this.gbDistribucion.Controls.Add(this.txtMargenBU);
+            this.gbDistribucion.Controls.Add(this.label7);
+            this.gbDistribucion.Controls.Add(this.txtMargenAU);
+            this.gbDistribucion.Controls.Add(this.label5);
+            this.gbDistribucion.Controls.Add(this.rbDExponencial);
+            this.gbDistribucion.Controls.Add(this.rbDNormal);
+            this.gbDistribucion.Controls.Add(this.rbDUniforme);
+            this.gbDistribucion.Enabled = false;
+            this.gbDistribucion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbDistribucion.Location = new System.Drawing.Point(876, 69);
+            this.gbDistribucion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gbDistribucion.Name = "gbDistribucion";
+            this.gbDistribucion.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gbDistribucion.Size = new System.Drawing.Size(515, 183);
+            this.gbDistribucion.TabIndex = 12;
+            this.gbDistribucion.TabStop = false;
+            this.gbDistribucion.Text = "Distribución: ";
             // 
             // btnGenerar
             // 
             this.btnGenerar.Enabled = false;
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(386, 122);
+            this.btnGenerar.Location = new System.Drawing.Point(386, 117);
             this.btnGenerar.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(121, 54);
             this.btnGenerar.TabIndex = 7;
             this.btnGenerar.Text = "Generar ";
             this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.Visible = false;
             this.btnGenerar.Click += new System.EventHandler(this.btn_PuntoC_Click);
             // 
             // txtLambda
             // 
             this.txtLambda.Enabled = false;
-            this.txtLambda.Location = new System.Drawing.Point(311, 91);
+            this.txtLambda.Location = new System.Drawing.Point(311, 119);
             this.txtLambda.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtLambda.Name = "txtLambda";
             this.txtLambda.Size = new System.Drawing.Size(60, 22);
@@ -174,7 +180,7 @@ namespace TpFinalSim280
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(225, 93);
+            this.label10.Location = new System.Drawing.Point(225, 121);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(63, 17);
@@ -184,7 +190,7 @@ namespace TpFinalSim280
             // txtVarianza
             // 
             this.txtVarianza.Enabled = false;
-            this.txtVarianza.Location = new System.Drawing.Point(311, 53);
+            this.txtVarianza.Location = new System.Drawing.Point(311, 81);
             this.txtVarianza.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtVarianza.Name = "txtVarianza";
             this.txtVarianza.Size = new System.Drawing.Size(60, 22);
@@ -193,7 +199,7 @@ namespace TpFinalSim280
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(225, 58);
+            this.label9.Location = new System.Drawing.Point(225, 86);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 17);
@@ -203,7 +209,7 @@ namespace TpFinalSim280
             // txtMedia
             // 
             this.txtMedia.Enabled = false;
-            this.txtMedia.Location = new System.Drawing.Point(311, 19);
+            this.txtMedia.Location = new System.Drawing.Point(311, 47);
             this.txtMedia.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtMedia.Name = "txtMedia";
             this.txtMedia.Size = new System.Drawing.Size(60, 22);
@@ -212,7 +218,7 @@ namespace TpFinalSim280
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(225, 24);
+            this.label8.Location = new System.Drawing.Point(225, 52);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(50, 17);
@@ -222,7 +228,7 @@ namespace TpFinalSim280
             // txtMargenBU
             // 
             this.txtMargenBU.Enabled = false;
-            this.txtMargenBU.Location = new System.Drawing.Point(427, 54);
+            this.txtMargenBU.Location = new System.Drawing.Point(427, 82);
             this.txtMargenBU.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtMargenBU.Name = "txtMargenBU";
             this.txtMargenBU.Size = new System.Drawing.Size(60, 22);
@@ -231,7 +237,7 @@ namespace TpFinalSim280
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(386, 58);
+            this.label7.Location = new System.Drawing.Point(386, 86);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(21, 17);
@@ -241,7 +247,7 @@ namespace TpFinalSim280
             // txtMargenAU
             // 
             this.txtMargenAU.Enabled = false;
-            this.txtMargenAU.Location = new System.Drawing.Point(427, 19);
+            this.txtMargenAU.Location = new System.Drawing.Point(427, 47);
             this.txtMargenAU.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtMargenAU.Name = "txtMargenAU";
             this.txtMargenAU.Size = new System.Drawing.Size(60, 22);
@@ -250,7 +256,7 @@ namespace TpFinalSim280
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(386, 24);
+            this.label5.Location = new System.Drawing.Point(386, 52);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(21, 17);
@@ -260,7 +266,7 @@ namespace TpFinalSim280
             // rbDExponencial
             // 
             this.rbDExponencial.AutoSize = true;
-            this.rbDExponencial.Location = new System.Drawing.Point(8, 89);
+            this.rbDExponencial.Location = new System.Drawing.Point(8, 117);
             this.rbDExponencial.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rbDExponencial.Name = "rbDExponencial";
             this.rbDExponencial.Size = new System.Drawing.Size(155, 21);
@@ -272,7 +278,7 @@ namespace TpFinalSim280
             // rbDNormal
             // 
             this.rbDNormal.AutoSize = true;
-            this.rbDNormal.Location = new System.Drawing.Point(8, 56);
+            this.rbDNormal.Location = new System.Drawing.Point(8, 84);
             this.rbDNormal.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rbDNormal.Name = "rbDNormal";
             this.rbDNormal.Size = new System.Drawing.Size(74, 21);
@@ -284,7 +290,7 @@ namespace TpFinalSim280
             // rbDUniforme
             // 
             this.rbDUniforme.AutoSize = true;
-            this.rbDUniforme.Location = new System.Drawing.Point(8, 23);
+            this.rbDUniforme.Location = new System.Drawing.Point(8, 51);
             this.rbDUniforme.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rbDUniforme.Name = "rbDUniforme";
             this.rbDUniforme.Size = new System.Drawing.Size(86, 21);
@@ -293,19 +299,20 @@ namespace TpFinalSim280
             this.rbDUniforme.UseVisualStyleBackColor = true;
             this.rbDUniforme.CheckedChanged += new System.EventHandler(this.rad_uniforme_CheckedChanged);
             // 
-            // groupBox4
+            // gbGeneradores
             // 
-            this.groupBox4.Controls.Add(this.groupBox2);
-            this.groupBox4.Controls.Add(this.groupBox1);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(17, 17);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.groupBox4.Size = new System.Drawing.Size(859, 183);
-            this.groupBox4.TabIndex = 13;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Números aleatorios: ";
+            this.gbGeneradores.Controls.Add(this.groupBox2);
+            this.gbGeneradores.Controls.Add(this.groupBox1);
+            this.gbGeneradores.Enabled = false;
+            this.gbGeneradores.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbGeneradores.Location = new System.Drawing.Point(9, 69);
+            this.gbGeneradores.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gbGeneradores.Name = "gbGeneradores";
+            this.gbGeneradores.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gbGeneradores.Size = new System.Drawing.Size(859, 183);
+            this.gbGeneradores.TabIndex = 13;
+            this.gbGeneradores.TabStop = false;
+            this.gbGeneradores.Text = "Números aleatorios: ";
             // 
             // groupBox2
             // 
@@ -502,12 +509,13 @@ namespace TpFinalSim280
             this.dgvResultadosDistribucion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.posicion,
             this.numero});
-            this.dgvResultadosDistribucion.Location = new System.Drawing.Point(1209, 205);
+            this.dgvResultadosDistribucion.Location = new System.Drawing.Point(1187, 261);
             this.dgvResultadosDistribucion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvResultadosDistribucion.Name = "dgvResultadosDistribucion";
             this.dgvResultadosDistribucion.RowTemplate.Height = 24;
             this.dgvResultadosDistribucion.Size = new System.Drawing.Size(228, 483);
             this.dgvResultadosDistribucion.TabIndex = 14;
+            this.dgvResultadosDistribucion.Visible = false;
             // 
             // posicion
             // 
@@ -519,21 +527,22 @@ namespace TpFinalSim280
             this.numero.HeaderText = "Números";
             this.numero.Name = "numero";
             // 
-            // groupBox3
+            // gbParamModelo
             // 
-            this.groupBox3.Controls.Add(this.btnParamModelo);
-            this.groupBox3.Controls.Add(this.cmbFuncion);
-            this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.txtNroRestricciones);
-            this.groupBox3.Controls.Add(this.txtNroVariables);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Location = new System.Drawing.Point(17, 205);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(775, 86);
-            this.groupBox3.TabIndex = 15;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Parámetros Modelo";
+            this.gbParamModelo.Controls.Add(this.btnParamModelo);
+            this.gbParamModelo.Controls.Add(this.cmbFuncion);
+            this.gbParamModelo.Controls.Add(this.label12);
+            this.gbParamModelo.Controls.Add(this.txtNroRestricciones);
+            this.gbParamModelo.Controls.Add(this.txtNroVariables);
+            this.gbParamModelo.Controls.Add(this.label11);
+            this.gbParamModelo.Controls.Add(this.label4);
+            this.gbParamModelo.Enabled = false;
+            this.gbParamModelo.Location = new System.Drawing.Point(8, 257);
+            this.gbParamModelo.Name = "gbParamModelo";
+            this.gbParamModelo.Size = new System.Drawing.Size(775, 86);
+            this.gbParamModelo.TabIndex = 15;
+            this.gbParamModelo.TabStop = false;
+            this.gbParamModelo.Text = "Parámetros Modelo";
             // 
             // btnParamModelo
             // 
@@ -604,7 +613,7 @@ namespace TpFinalSim280
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.dgvFuncionZ);
-            this.groupBox6.Location = new System.Drawing.Point(17, 297);
+            this.groupBox6.Location = new System.Drawing.Point(8, 349);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(775, 100);
             this.groupBox6.TabIndex = 16;
@@ -626,7 +635,7 @@ namespace TpFinalSim280
             // 
             this.groupBox7.Controls.Add(this.dgvRestriciones);
             this.groupBox7.Controls.Add(this.lblcondionZero);
-            this.groupBox7.Location = new System.Drawing.Point(17, 403);
+            this.groupBox7.Location = new System.Drawing.Point(8, 455);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(775, 289);
             this.groupBox7.TabIndex = 17;
@@ -662,7 +671,8 @@ namespace TpFinalSim280
             this.groupBox8.Controls.Add(this.label17);
             this.groupBox8.Controls.Add(this.txtCantIteraciones);
             this.groupBox8.Controls.Add(this.txtMostrarDesde);
-            this.groupBox8.Location = new System.Drawing.Point(812, 205);
+            this.groupBox8.Enabled = false;
+            this.groupBox8.Location = new System.Drawing.Point(803, 257);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -731,7 +741,7 @@ namespace TpFinalSim280
             // btnSimular
             // 
             this.btnSimular.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnSimular.Location = new System.Drawing.Point(1002, 419);
+            this.btnSimular.Location = new System.Drawing.Point(993, 471);
             this.btnSimular.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimular.Name = "btnSimular";
             this.btnSimular.Size = new System.Drawing.Size(184, 74);
@@ -754,18 +764,19 @@ namespace TpFinalSim280
             // 
             this.tabParam.AccessibleName = "tabParametros";
             this.tabParam.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabParam.Controls.Add(this.groupBox4);
+            this.tabParam.Controls.Add(this.groupBox11);
+            this.tabParam.Controls.Add(this.gbGeneradores);
             this.tabParam.Controls.Add(this.groupBox7);
             this.tabParam.Controls.Add(this.btnSimular);
             this.tabParam.Controls.Add(this.groupBox8);
-            this.tabParam.Controls.Add(this.groupBox5);
+            this.tabParam.Controls.Add(this.gbDistribucion);
             this.tabParam.Controls.Add(this.dgvResultadosDistribucion);
-            this.tabParam.Controls.Add(this.groupBox3);
+            this.tabParam.Controls.Add(this.gbParamModelo);
             this.tabParam.Controls.Add(this.groupBox6);
             this.tabParam.Location = new System.Drawing.Point(4, 25);
             this.tabParam.Name = "tabParam";
             this.tabParam.Padding = new System.Windows.Forms.Padding(3);
-            this.tabParam.Size = new System.Drawing.Size(1720, 761);
+            this.tabParam.Size = new System.Drawing.Size(1503, 761);
             this.tabParam.TabIndex = 0;
             this.tabParam.Text = "Parámetros";
             // 
@@ -850,6 +861,41 @@ namespace TpFinalSim280
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Resultados";
             // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.rbDistribucion);
+            this.groupBox11.Controls.Add(this.rbGeneradores);
+            this.groupBox11.Location = new System.Drawing.Point(9, 15);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(467, 49);
+            this.groupBox11.TabIndex = 18;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Generacion Numeros Aleatorios";
+            // 
+            // rbGeneradores
+            // 
+            this.rbGeneradores.AutoSize = true;
+            this.rbGeneradores.Location = new System.Drawing.Point(8, 20);
+            this.rbGeneradores.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.rbGeneradores.Name = "rbGeneradores";
+            this.rbGeneradores.Size = new System.Drawing.Size(113, 21);
+            this.rbGeneradores.TabIndex = 20;
+            this.rbGeneradores.Text = "Generadores";
+            this.rbGeneradores.UseVisualStyleBackColor = true;
+            this.rbGeneradores.CheckedChanged += new System.EventHandler(this.rbGeneradores_checked);
+            // 
+            // rbDistribucion
+            // 
+            this.rbDistribucion.AutoSize = true;
+            this.rbDistribucion.Location = new System.Drawing.Point(145, 20);
+            this.rbDistribucion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.rbDistribucion.Name = "rbDistribucion";
+            this.rbDistribucion.Size = new System.Drawing.Size(103, 21);
+            this.rbDistribucion.TabIndex = 21;
+            this.rbDistribucion.Text = "Distribución";
+            this.rbDistribucion.UseVisualStyleBackColor = true;
+            this.rbDistribucion.CheckedChanged += new System.EventHandler(this.rbDistribucion_checked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -862,16 +908,16 @@ namespace TpFinalSim280
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SIM: TP final. Ejercicio 280 - Federico Lopez - Legajo: 55025";
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
+            this.gbDistribucion.ResumeLayout(false);
+            this.gbDistribucion.PerformLayout();
+            this.gbGeneradores.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultadosDistribucion)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gbParamModelo.ResumeLayout(false);
+            this.gbParamModelo.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncionZ)).EndInit();
             this.groupBox7.ResumeLayout(false);
@@ -885,13 +931,15 @@ namespace TpFinalSim280
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
        
 
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox gbDistribucion;
         private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.TextBox txtLambda;
         private System.Windows.Forms.Label label10;
@@ -906,7 +954,7 @@ namespace TpFinalSim280
         private System.Windows.Forms.RadioButton rbDExponencial;
         private System.Windows.Forms.RadioButton rbDNormal;
         private System.Windows.Forms.RadioButton rbDUniforme;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gbGeneradores;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtSumatorioC;
         private System.Windows.Forms.TextBox txtIntervalos;
@@ -930,7 +978,7 @@ namespace TpFinalSim280
 
         #endregion
 
-        private GroupBox groupBox3;
+        private GroupBox gbParamModelo;
         private Label label12;
         private TextBox txtNroRestricciones;
         private TextBox txtNroVariables;
@@ -961,6 +1009,9 @@ namespace TpFinalSim280
         private RichTextBox txtZOptima;
         private GroupBox groupBox10;
         private GroupBox groupBox9;
+        private GroupBox groupBox11;
+        private RadioButton rbDistribucion;
+        private RadioButton rbGeneradores;
     }
 }
 

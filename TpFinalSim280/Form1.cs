@@ -272,60 +272,99 @@ namespace TpFinalSim280
                 GenerarNumeros();
         }
 
+        private void rbGeneradores_checked(object sender, EventArgs e)
+        {
+            if (rbGeneradores.Checked)
+            {
+                gbGeneradores.Enabled = true;
+                gbDistribucion.Enabled = false;
+
+                gbParamModelo.Enabled = true;
+            }
+        }
+
+        private void rbDistribucion_checked(object sender, EventArgs e)
+        {
+            if (rbDistribucion.Checked)
+            {
+                gbGeneradores.Enabled = false;
+                gbDistribucion.Enabled = true;
+
+                gbParamModelo.Enabled = true;
+            }
+        }
+
+
+
         public void GenerarNumeros()
         {
             dgvResultadosDistribucion.Rows.Clear();
 
-            if (rbGSistema.Checked)
+            if (rbGeneradores.Checked)
             {
-                IGeneradorAleatorio = new GeneradorDelSistema();
-            }
+                if (rbGSistema.Checked)
+                {
+                    IGeneradorAleatorio = new GeneradorDelSistema();
+                }
 
+                else
+                {
+                    var a = int.Parse(txtMultiplicativoA.Text);
+                    var m = int.Parse(txtDivisorM.Text);
+                    var semilla = float.Parse(txtSemillaA.Text);
+
+                    //Congruencial Multiplicativo : Xn = (A * Xn-1 ) Mod M
+                    if (rbGCMultiplicativo.Checked)
+                    {
+                        IGeneradorAleatorio = new CongruencialMultiplicativo(semilla, a, m);
+                    }
+
+                    //Congruencial Mixto : Xn = (A * Xn-1 + C ) Mod M
+                    else if (rbGCMixto.Checked)
+                    {
+                        var c = int.Parse(txtSumatorioC.Text);
+                        IGeneradorAleatorio = new CongruencialMixto(semilla, a, c, m);
+                    }
+                }
+            }
             else
             {
-                var a = int.Parse(txtMultiplicativoA.Text);
-                var m = int.Parse(txtDivisorM.Text);
-                var semilla = float.Parse(txtSemillaA.Text);
+                IGeneradorAleatorio = new GeneradorDelSistema();
 
-                //Congruencial Multiplicativo : Xn = (A * Xn-1 ) Mod M
-                if (rbGCMultiplicativo.Checked)
+                if (rbDistribucion.Checked)
                 {
-                    IGeneradorAleatorio = new CongruencialMultiplicativo(semilla, a, m);
+                    if (rbDUniforme.Checked)
+                    {
+                        var a = float.Parse(txtMargenAU.Text);
+                        var b = float.Parse(txtMargenBU.Text);
+
+                        IDistribucion = new DistribucionUniforme(a, b, IGeneradorAleatorio);
+                    }
+
+                    if (rbDNormal.Checked)
+                    {
+                        var media = float.Parse(txtMedia.Text);
+                        var varianza = float.Parse(txtVarianza.Text);
+
+                        IDistribucion = new DistribucionNormal(media, varianza, IGeneradorAleatorio);
+                    }
+
+                    if (rbDExponencial.Checked)
+                    {
+                        var lambda = float.Parse(txtLambda.Text);
+
+                        IDistribucion = new DistribucionExponencialNegativa(lambda, IGeneradorAleatorio);
+                    }
                 }
 
-                //Congruencial Mixto : Xn = (A * Xn-1 + C ) Mod M
-                else if (rbGCMixto.Checked)
-                {
-                    var c = int.Parse(txtSumatorioC.Text);
-                    IGeneradorAleatorio = new CongruencialMixto(semilla, a, c, m);
-                }
             }
 
-            if (rbDUniforme.Checked)
-            {
-                var a = float.Parse(txtMargenAU.Text);
-                var b = float.Parse(txtMargenBU.Text);
+            //var tamañoMuestra = int.Parse(txtCantNro.Text);
+            //var cantidadIntervalos = int.Parse(txtIntervalos.Text);
 
-                IDistribucion = new DistribucionUniforme(a, b, IGeneradorAleatorio);
-            }
+            var tamañoMuestra = 100;
+            var cantidadIntervalos = 5;
 
-            if (rbDNormal.Checked)
-            {
-                var media = float.Parse(txtMedia.Text);
-                var varianza = float.Parse(txtVarianza.Text);
-
-                IDistribucion = new DistribucionNormal(media, varianza, IGeneradorAleatorio);
-            }
-
-            if (rbDExponencial.Checked)
-            {
-                var lambda = float.Parse(txtLambda.Text);
-
-                IDistribucion = new DistribucionExponencialNegativa(lambda, IGeneradorAleatorio);
-            }
-
-            var tamañoMuestra = int.Parse(txtCantNro.Text);
-            var cantidadIntervalos = int.Parse(txtIntervalos.Text);
             var alfa = (float)0.5;
 
             try
@@ -614,5 +653,6 @@ namespace TpFinalSim280
 
             return restriccionesArray;
         }
+
     }
 }
