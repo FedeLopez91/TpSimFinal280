@@ -16,8 +16,8 @@ namespace NumerosAleatorios
         public List<float> FrecuenciasObservadasRelativas { get; protected set; }
         public List<float> FrecuenciasEsperadasAbsolutas { get; protected set; }
         public List<float> FrecuenciasEsperadasRelativas { get; protected set; }
-        public List<float> ValoresChiCuadrado { get; protected set; }
-        public float TablaChiCuadrado { get; protected set; }
+       // public List<float> ValoresChiCuadrado { get; protected set; }
+       // public float TablaChiCuadrado { get; protected set; }
 
         public GestorEstadistico(IDistribucion distribucion, int tamañoMuestra, int cantidadIntervalos, float alfa)
         {
@@ -106,30 +106,30 @@ namespace NumerosAleatorios
             FrecuenciasEsperadasRelativas = relativas;
         }
 
-        private void CalcularValoresChiCuadrado()
-        {
-            var chiCuadrado = new List<float>();
+        //private void CalcularValoresChiCuadrado()
+        //{
+        //    var chiCuadrado = new List<float>();
 
-            for (var i = 0; i < CantidadIntervalos; i++)
-            {
-                var observada = FrecuenciasObservadasAbsolutas[i];
-                var esperada = FrecuenciasEsperadasAbsolutas[i];
+        //    for (var i = 0; i < CantidadIntervalos; i++)
+        //    {
+        //        var observada = FrecuenciasObservadasAbsolutas[i];
+        //        var esperada = FrecuenciasEsperadasAbsolutas[i];
 
-                var valor = ChiCuadrado.Calcular(observada, esperada);
+        //        var valor = ChiCuadrado.Calcular(observada, esperada);
 
-                chiCuadrado.Add(valor);
-            }
+        //        chiCuadrado.Add(valor);
+        //    }
 
-            ValoresChiCuadrado = chiCuadrado;
-        }
+        //    ValoresChiCuadrado = chiCuadrado;
+        //}
 
-        public void ObtenerValorDeTablaChiCuadrado()
-        {
-            var grados = CantidadIntervalos - Distribucion.CantidadParametros() - 1;
+        //public void ObtenerValorDeTablaChiCuadrado()
+        //{
+        //    var grados = CantidadIntervalos - Distribucion.CantidadParametros() - 1;
 
-            var valor = ChiCuadrado.ValorDeTabla(grados, Alfa);
+        //    var valor = ChiCuadrado.ValorDeTabla(grados, Alfa);
 
-            TablaChiCuadrado = valor;
-        }
+        //    TablaChiCuadrado = valor;
+        //}
     }
 }

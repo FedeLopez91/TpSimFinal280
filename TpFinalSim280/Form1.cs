@@ -24,7 +24,6 @@ namespace TpFinalSim280
         private int nroRestricciones;
         private int nroVariables;
         private const int Decimales = 4;
-        // private ManejadorSimulacion manejador;
 
         public Form1()
         {
@@ -272,36 +271,10 @@ namespace TpFinalSim280
                 GenerarNumeros();
         }
 
-        private void rbGeneradores_checked(object sender, EventArgs e)
-        {
-            if (rbGeneradores.Checked)
-            {
-                gbGeneradores.Enabled = true;
-                gbDistribucion.Enabled = false;
-
-                gbParamModelo.Enabled = true;
-            }
-        }
-
-        private void rbDistribucion_checked(object sender, EventArgs e)
-        {
-            if (rbDistribucion.Checked)
-            {
-                gbGeneradores.Enabled = false;
-                gbDistribucion.Enabled = true;
-
-                gbParamModelo.Enabled = true;
-            }
-        }
-
-
-
         public void GenerarNumeros()
         {
             dgvResultadosDistribucion.Rows.Clear();
 
-            if (rbGeneradores.Checked)
-            {
                 if (rbGSistema.Checked)
                 {
                     IGeneradorAleatorio = new GeneradorDelSistema();
@@ -326,13 +299,7 @@ namespace TpFinalSim280
                         IGeneradorAleatorio = new CongruencialMixto(semilla, a, c, m);
                     }
                 }
-            }
-            else
-            {
-                IGeneradorAleatorio = new GeneradorDelSistema();
 
-                if (rbDistribucion.Checked)
-                {
                     if (rbDUniforme.Checked)
                     {
                         var a = float.Parse(txtMargenAU.Text);
@@ -355,15 +322,12 @@ namespace TpFinalSim280
 
                         IDistribucion = new DistribucionExponencialNegativa(lambda, IGeneradorAleatorio);
                     }
-                }
+                //}
 
-            }
+            //}
 
-            //var tamañoMuestra = int.Parse(txtCantNro.Text);
-            //var cantidadIntervalos = int.Parse(txtIntervalos.Text);
-
-            var tamañoMuestra = 100;
-            var cantidadIntervalos = 5;
+            var tamañoMuestra = string.IsNullOrEmpty(txtCantNro.Text)? 100 : int.Parse(txtCantNro.Text);
+            var cantidadIntervalos = string.IsNullOrEmpty(txtIntervalos.Text) ? 100 : int.Parse(txtIntervalos.Text);
 
             var alfa = (float)0.5;
 
@@ -375,22 +339,9 @@ namespace TpFinalSim280
             {
 
                 MessageBox.Show(e.Message);
-                // var grados = int.Parse(txt_IntC.Text) - _distribucion.CantidadParametros() - 1;
-
-                //MessageBox.Show(grados <= 0
-                //? @"Grados de libertad insuficientes, utilice más intervalos"
-                //: @"Falla la prueba de Chi Cuadrado porque las frecuencias esperadas tienden a cero, utilice menos intervalos");
-
                 txtDivisorM.Focus();
                 return;
             }
-
-            //for (var i = 0; i < tamañoMuestra; i++)
-            //{
-            //    var valor = gestor.Valores[i];
-
-            //    dgvResultadosDistribucion.Rows.Add(i + 1, valor);
-            //}
 
         }
 
