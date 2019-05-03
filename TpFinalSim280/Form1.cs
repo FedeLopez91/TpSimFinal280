@@ -275,58 +275,58 @@ namespace TpFinalSim280
         {
             dgvResultadosDistribucion.Rows.Clear();
 
-                if (rbGSistema.Checked)
+            if (rbGSistema.Checked)
+            {
+                IGeneradorAleatorio = new GeneradorDelSistema();
+            }
+
+            else
+            {
+                var a = int.Parse(txtMultiplicativoA.Text);
+                var m = int.Parse(txtDivisorM.Text);
+                var semilla = float.Parse(txtSemillaA.Text);
+
+                //Congruencial Multiplicativo : Xn = (A * Xn-1 ) Mod M
+                if (rbGCMultiplicativo.Checked)
                 {
-                    IGeneradorAleatorio = new GeneradorDelSistema();
+                    IGeneradorAleatorio = new CongruencialMultiplicativo(semilla, a, m);
                 }
 
-                else
+                //Congruencial Mixto : Xn = (A * Xn-1 + C ) Mod M
+                else if (rbGCMixto.Checked)
                 {
-                    var a = int.Parse(txtMultiplicativoA.Text);
-                    var m = int.Parse(txtDivisorM.Text);
-                    var semilla = float.Parse(txtSemillaA.Text);
-
-                    //Congruencial Multiplicativo : Xn = (A * Xn-1 ) Mod M
-                    if (rbGCMultiplicativo.Checked)
-                    {
-                        IGeneradorAleatorio = new CongruencialMultiplicativo(semilla, a, m);
-                    }
-
-                    //Congruencial Mixto : Xn = (A * Xn-1 + C ) Mod M
-                    else if (rbGCMixto.Checked)
-                    {
-                        var c = int.Parse(txtSumatorioC.Text);
-                        IGeneradorAleatorio = new CongruencialMixto(semilla, a, c, m);
-                    }
+                    var c = int.Parse(txtSumatorioC.Text);
+                    IGeneradorAleatorio = new CongruencialMixto(semilla, a, c, m);
                 }
+            }
 
-                    if (rbDUniforme.Checked)
-                    {
-                        var a = float.Parse(txtMargenAU.Text);
-                        var b = float.Parse(txtMargenBU.Text);
+            if (rbDUniforme.Checked)
+            {
+                var a = float.Parse(txtMargenAU.Text);
+                var b = float.Parse(txtMargenBU.Text);
 
-                        IDistribucion = new DistribucionUniforme(a, b, IGeneradorAleatorio);
-                    }
+                IDistribucion = new DistribucionUniforme(a, b, IGeneradorAleatorio);
+            }
 
-                    if (rbDNormal.Checked)
-                    {
-                        var media = float.Parse(txtMedia.Text);
-                        var varianza = float.Parse(txtVarianza.Text);
+            if (rbDNormal.Checked)
+            {
+                var media = float.Parse(txtMedia.Text);
+                var varianza = float.Parse(txtVarianza.Text);
 
-                        IDistribucion = new DistribucionNormal(media, varianza, IGeneradorAleatorio);
-                    }
+                IDistribucion = new DistribucionNormal(media, varianza, IGeneradorAleatorio);
+            }
 
-                    if (rbDExponencial.Checked)
-                    {
-                        var lambda = float.Parse(txtLambda.Text);
+            if (rbDExponencial.Checked)
+            {
+                var lambda = float.Parse(txtLambda.Text);
 
-                        IDistribucion = new DistribucionExponencialNegativa(lambda, IGeneradorAleatorio);
-                    }
-                //}
+                IDistribucion = new DistribucionExponencialNegativa(lambda, IGeneradorAleatorio);
+            }
+            //}
 
             //}
 
-            var tamañoMuestra = string.IsNullOrEmpty(txtCantNro.Text)? 100 : int.Parse(txtCantNro.Text);
+            var tamañoMuestra = string.IsNullOrEmpty(txtCantNro.Text) ? 100 : int.Parse(txtCantNro.Text);
             var cantidadIntervalos = string.IsNullOrEmpty(txtIntervalos.Text) ? 100 : int.Parse(txtIntervalos.Text);
 
             var alfa = (float)0.5;
@@ -371,12 +371,12 @@ namespace TpFinalSim280
             string condicionZero = "";
 
             dgvRestriciones.Rows.Clear();
+            dgvRestriciones.Columns.Clear();
 
             for (int i = 0; i < nroVariables; i++)
             {
                 string header = "X" + (i + 1).ToString();
                 condicionZero += header + ", ";
-                //dt.Columns.Add(header, typeof(String));
 
                 DataGridViewTextBoxColumn variable = new DataGridViewTextBoxColumn();
                 variable.HeaderText = header;
@@ -444,34 +444,34 @@ namespace TpFinalSim280
 
         private void ProcesarParametros()
         {
-            // bool respuesta = true;
-            //var restriccionesParam = GetRestricciones();
-            //var funcionZ = GetFunctionZ();
+            bool respuesta = true;
+            var restriccionesParam = GetRestricciones();
+            var funcionZ = GetFunctionZ();
 
-            //if (cmbFuncion.SelectedValue != null && string.IsNullOrEmpty(txtCantIteraciones.Text) && string.IsNullOrEmpty(txtMostrarDesde.Text) && string.IsNullOrEmpty(txtCantMostrar.Text))
-            //{
-            //string tipoFuncion = (string)cmbFuncion.SelectedItem.ToString();
-            //int cantIteraciones = int.Parse(txtCantIteraciones.Text);
-            //int mostrarDesde = int.Parse(txtMostrarDesde.Text);
-            //int cantAMostrar = int.Parse(txtCantMostrar.Text);
+            if (cmbFuncion.SelectedItem != null && !string.IsNullOrEmpty(txtCantIteraciones.Text) && !string.IsNullOrEmpty(txtMostrarDesde.Text) && !string.IsNullOrEmpty(txtCantMostrar.Text))
+            {
+                string tipoFuncion = (string)cmbFuncion.SelectedItem.ToString();
+                int cantIteraciones = int.Parse(txtCantIteraciones.Text);
+                int mostrarDesde = int.Parse(txtMostrarDesde.Text);
+                int cantAMostrar = int.Parse(txtCantMostrar.Text);
 
-            string tipoFuncion = "MAX";
-            //string tipoFuncion = "MIN";
-            int cantIteraciones = 100;
-            int mostrarDesde = 0;
-            int cantAMostrar = 150;
-            Restricciones[] restriccionesParam = GetRestriccionesEjemplo();
-            FunctionZ funcionZ = new FunctionZ(new float[2] { 1, 1 }, 120);
+                //string tipoFuncion = "MAX";
+                ////string tipoFuncion = "MIN";
+                //int cantIteraciones = 100;
+                //int mostrarDesde = 0;
+                //int cantAMostrar = 150;
+                //Restricciones[] restriccionesParam = GetRestriccionesEjemplo();
+                //FunctionZ funcionZ = new FunctionZ(new float[2] { 1, 1 }, 120);
 
-            GenerarNumeros();
+                GenerarNumeros();
 
-            Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restriccionesParam, funcionZ, gestor);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Completar Parámetros para Iniciar Simulacion");
-            //    //respuesta = false;
-            //}
+                Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restriccionesParam, funcionZ, gestor);
+            }
+            else
+            {
+                MessageBox.Show("Completar Parámetros para Iniciar Simulacion");
+                //respuesta = false;
+            }
 
             //return respuesta;
 
@@ -484,11 +484,16 @@ namespace TpFinalSim280
             for (int i = 0; i < nroRestricciones; i++)
             {
                 float[] variables = new float[nroVariables];
-                float b = (float)(dgvRestriciones.Rows[i].Cells[nroVariables + 1].Value);
+                float b = float.Parse(dgvRestriciones.Rows[i].Cells[nroVariables + 1].Value.ToString());
                 string signo = Convert.ToString(dgvRestriciones.Rows[i].Cells[nroVariables].Value);
                 for (int j = 0; j < nroVariables; j++)
                 {
-                    variables[j] = (float)(dgvRestriciones.Rows[i].Cells[j].Value);
+                    if (dgvRestriciones.Rows[i].Cells[j].Value == null)
+                    {
+                        variables[j] = 0;
+                        continue;
+                    }
+                    variables[j] = float.Parse(dgvRestriciones.Rows[i].Cells[j].Value.ToString());
                 }
                 restricciones[i] = new Restricciones(variables, b, signo);
             }
@@ -501,9 +506,9 @@ namespace TpFinalSim280
             float[] variablesFuncion = new float[nroVariables];
             for (int i = 0; i < nroVariables; i++)
             {
-                variablesFuncion[i] = (float)(dgvFuncionZ.Rows[0].Cells[i].Value);
+                variablesFuncion[i] = float.Parse(dgvFuncionZ.Rows[0].Cells[i].Value.ToString());
             }
-            float c = (float)(dgvFuncionZ.Rows[0].Cells[nroVariables].Value);
+            float c = float.Parse(dgvFuncionZ.Rows[0].Cells[nroVariables].Value.ToString());
 
             FunctionZ functionZ = new FunctionZ(variablesFuncion, c);
 

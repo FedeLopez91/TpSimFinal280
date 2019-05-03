@@ -530,7 +530,6 @@ namespace TpFinalSim280
             this.gbParamModelo.Controls.Add(this.txtNroVariables);
             this.gbParamModelo.Controls.Add(this.label11);
             this.gbParamModelo.Controls.Add(this.label4);
-            this.gbParamModelo.Enabled = false;
             this.gbParamModelo.Location = new System.Drawing.Point(5, 220);
             this.gbParamModelo.Name = "gbParamModelo";
             this.gbParamModelo.Size = new System.Drawing.Size(775, 86);
@@ -554,8 +553,8 @@ namespace TpFinalSim280
             this.cmbFuncion.FormattingEnabled = true;
             this.cmbFuncion.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.cmbFuncion.Items.AddRange(new object[] {
-            "Max",
-            "Min"});
+            "MAX",
+            "MIN"});
             this.cmbFuncion.Location = new System.Drawing.Point(535, 33);
             this.cmbFuncion.Name = "cmbFuncion";
             this.cmbFuncion.Size = new System.Drawing.Size(121, 24);
@@ -665,7 +664,6 @@ namespace TpFinalSim280
             this.groupBox8.Controls.Add(this.label17);
             this.groupBox8.Controls.Add(this.txtCantIteraciones);
             this.groupBox8.Controls.Add(this.txtMostrarDesde);
-            this.groupBox8.Enabled = false;
             this.groupBox8.Location = new System.Drawing.Point(800, 220);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox8.Name = "groupBox8";
