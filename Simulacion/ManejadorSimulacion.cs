@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Simulacion
 {
     public class ManejadorSimulacion
     {
 
-        public DataTable Simular(string tipoFuncion, int cantIteraciones, int mostrarDesde, int cantAMostrar, Restricciones[] restricciones, FunctionZ functionZ, GestorEstadistico numerosAleatorios, ref float[] variablesOptimas, ref float zOptima)
+        public DataTable Simular(string tipoFuncion, int cantIteraciones, int mostrarDesde, int cantAMostrar, Restricciones[] restricciones, FunctionZ functionZ, GestorEstadistico numerosAleatorios, ProgressBar pb, ref float[] variablesOptimas, ref float zOptima)
         {
             DataTable tabla = new DataTable();
             int mostrarHasta = mostrarDesde + cantAMostrar;
@@ -146,6 +147,8 @@ namespace Simulacion
                 }
                 if (j >= mostrarDesde && j <= mostrarHasta)
                     tabla.LoadDataRow(vector, true);
+
+                pb.Increment(pb.Step);
             }
 
             tabla.LoadDataRow(vector, true);

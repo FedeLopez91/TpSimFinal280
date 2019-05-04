@@ -448,8 +448,8 @@ namespace TpFinalSim280
 
         private void btnSimularClick(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             ProcesarParametros();
-
         }
 
         private void ProcesarParametros()
@@ -463,34 +463,26 @@ namespace TpFinalSim280
             resp += ValidarContenidoDgv(dgvFuncionZ);
             resp += ValidarContenidoDgv(dgvRestriciones);
 
-            if (string.IsNullOrEmpty(resp))
-            //if (cmbFuncion.SelectedItem != null && !string.IsNullOrEmpty(txtCantIteraciones.Text) && !string.IsNullOrEmpty(txtMostrarDesde.Text) && !string.IsNullOrEmpty(txtCantMostrar.Text))
-            {
-                string tipoFuncion = (string)cmbFuncion.SelectedItem.ToString();
-                int cantIteraciones = int.Parse(txtCantIteraciones.Text);
-                int mostrarDesde = int.Parse(txtMostrarDesde.Text);
-                int cantAMostrar = int.Parse(txtCantMostrar.Text);
-                var restriccionesParam = GetRestricciones();
-                var funcionZ = GetFunctionZ();
-                //string tipoFuncion = "MAX";
-                ////string tipoFuncion = "MIN";
-                //int cantIteraciones = 100;
-                //int mostrarDesde = 0;
-                //int cantAMostrar = 150;
-                //Restricciones[] restriccionesParam = GetRestriccionesEjemplo();
-                //FunctionZ funcionZ = new FunctionZ(new float[2] { 1, 1 }, 120);
-
+            //if (string.IsNullOrEmpty(resp))
+            //{
+                string tipoFuncion = "MAX";
+                //string tipoFuncion = "MIN";
+                int cantIteraciones = 10000;
+                int mostrarDesde = 0;
+                int cantAMostrar = 150;
+                Restricciones[] restriccionesParam = GetRestriccionesEjemplo();
+                FunctionZ funcionZ = new FunctionZ(new float[2] { 1, 1 }, 120);
                 GenerarNumeros();
 
-                Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restriccionesParam, funcionZ, gestor);
-            }
-            else
-            {
-                MessageBox.Show("Completar Parámetros para Iniciar Simulacion: \n\t" + resp);
-                //respuesta = false;
-            }
+            Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, GetRestriccionesEjemplo(), funcionZ, gestor);
 
-            //return respuesta;
+            //Simular(cmbFuncion.SelectedItem.ToString(), int.Parse(txtCantIteraciones.Text), int.Parse(txtMostrarDesde.Text), int.Parse(txtCantMostrar.Text), GetRestricciones(), GetFunctionZ(), gestor);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Completar Parámetros para Iniciar Simulacion: \n\t" + resp);
+            //    //respuesta = false;
+            //}
 
         }
 
@@ -586,12 +578,18 @@ namespace TpFinalSim280
 
         private void Simular(string tipoFuncion, int cantIteraciones, int mostrarDesde, int cantAMostrar, Restricciones[] restricciones, FunctionZ funcionZ, GestorEstadistico numerosAleatorios)
         {
+            var pb = (ProgressBar)this.Controls.Find("progressbar", true).FirstOrDefault();
+            pb.Value = 0;
+            pb.Maximum = cantIteraciones;
+
             float[] variablesOptimas = new float[funcionZ.variables.Length];
             float zOptima = 0;
             txtFuncionZDisplay.Text = GetFuncionZDisplay(funcionZ, tipoFuncion);
             txtRestriccionesDisplay.Text = GetRestrincionesDisplay(restricciones);
 
-            dgvResultados.DataSource = new ManejadorSimulacion().Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restricciones, funcionZ, gestor, ref variablesOptimas, ref zOptima);
+
+
+            dgvResultados.DataSource = new ManejadorSimulacion().Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restricciones, funcionZ, gestor, pb, ref variablesOptimas, ref zOptima);
 
             dgvResultados.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvResultados.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -600,7 +598,7 @@ namespace TpFinalSim280
             dgvResultados.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             tabParametros.SelectTab(tabResult);
-
+            Cursor.Current = Cursors.Default;
             txtVariablesOptimas.Text = GetVariablesOptimasDisplay(variablesOptimas);
             txtZOptima.Text = "Z(X)= " + zOptima.ToString();
 
@@ -676,6 +674,21 @@ namespace TpFinalSim280
             restriccionesArray[2] = r3;
 
             return restriccionesArray;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var pb = (ProgressBar)this.Controls.Find("progressbar", true).FirstOrDefault();
+            var interaciones = 10000;
+
+            for (int i = 0; i < interaciones; i++)
+            {
+                var result = i;
+                pb.Increment(result);
+            }
+            
+
+
         }
 
     }
