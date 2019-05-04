@@ -352,18 +352,28 @@ namespace TpFinalSim280
 
         private void okBtn_Click(object sender, EventArgs e)
         {
-            try
+            var result = ValidarContenidoTxt(txtNroRestricciones);
+            result += ValidarContenidoTxt(txtNroVariables);
+            if (string.IsNullOrEmpty(result))
             {
-                nroRestricciones = Convert.ToInt32(txtNroRestricciones.Text);
-                nroVariables = Convert.ToInt32(txtNroVariables.Text);
-                GenerarTablaFuncionZ();
-                GenerarTablaRestricciones();
-                lblcondionZero.Visible = true;
+                try
+                {
+                    nroRestricciones = Convert.ToInt32(txtNroRestricciones.Text);
+                    nroVariables = Convert.ToInt32(txtNroVariables.Text);
+                    GenerarTablaFuncionZ();
+                    GenerarTablaRestricciones();
+                    lblcondionZero.Visible = true;
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
             }
-            catch (Exception err)
+            else
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Ingresar valor en: \n\t" + result);
             }
+
         }
 
         private void GenerarTablaRestricciones()
@@ -444,17 +454,24 @@ namespace TpFinalSim280
 
         private void ProcesarParametros()
         {
-            bool respuesta = true;
-            var restriccionesParam = GetRestricciones();
-            var funcionZ = GetFunctionZ();
 
-            if (cmbFuncion.SelectedItem != null && !string.IsNullOrEmpty(txtCantIteraciones.Text) && !string.IsNullOrEmpty(txtMostrarDesde.Text) && !string.IsNullOrEmpty(txtCantMostrar.Text))
+            var resp = "";
+            resp = ValidarContenidoTxt(txtCantIteraciones);
+            resp += ValidarContenidoTxt(txtMostrarDesde);
+            resp += ValidarContenidoTxt(txtCantMostrar);
+            resp += ValidarContenidoCmb(cmbFuncion);
+            resp += ValidarContenidoDgv(dgvFuncionZ);
+            resp += ValidarContenidoDgv(dgvRestriciones);
+
+            if (string.IsNullOrEmpty(resp))
+            //if (cmbFuncion.SelectedItem != null && !string.IsNullOrEmpty(txtCantIteraciones.Text) && !string.IsNullOrEmpty(txtMostrarDesde.Text) && !string.IsNullOrEmpty(txtCantMostrar.Text))
             {
                 string tipoFuncion = (string)cmbFuncion.SelectedItem.ToString();
                 int cantIteraciones = int.Parse(txtCantIteraciones.Text);
                 int mostrarDesde = int.Parse(txtMostrarDesde.Text);
                 int cantAMostrar = int.Parse(txtCantMostrar.Text);
-
+                var restriccionesParam = GetRestricciones();
+                var funcionZ = GetFunctionZ();
                 //string tipoFuncion = "MAX";
                 ////string tipoFuncion = "MIN";
                 //int cantIteraciones = 100;
@@ -469,12 +486,63 @@ namespace TpFinalSim280
             }
             else
             {
-                MessageBox.Show("Completar Parámetros para Iniciar Simulacion");
+                MessageBox.Show("Completar Parámetros para Iniciar Simulacion: \n\t" + resp);
                 //respuesta = false;
             }
 
             //return respuesta;
 
+        }
+
+        private string ValidarContenidoTxt(TextBox textInput)
+        {
+            var resp = "";
+            if (string.IsNullOrEmpty(textInput.Text))
+            {
+                resp = "- "+textInput.Name.Replace("txt", " ") + "\n" + "\t";
+            }
+            return resp;
+        }
+
+        private string ValidarContenidoCmb(ComboBox cmbInput)
+        {
+            var resp = "";
+            if (cmbFuncion.SelectedItem == null)
+            {
+                resp = "- "+cmbFuncion.Name.Replace("cmb", " ") + "\n" + "\t";
+            }
+            return resp;
+        }
+
+        private string ValidarContenidoDgv(DataGridView dgvParameters)
+        {
+            bool rowIsEmpty = false;
+            string result = "";
+            if (dgvParameters.Columns.Count > 0)
+            {
+                for (int i = 0; i < dgvParameters.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgvParameters.Columns.Count; j++)
+                    {
+                        DataGridViewCell cell = dgvParameters[j, i];
+                        if (cell.Value == null)
+                        {
+                            rowIsEmpty = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                rowIsEmpty = true;
+            }
+
+            if (rowIsEmpty)
+            {
+                result = "- " + dgvParameters.Name.Replace("dgv", " ")+"\n"+"\t";
+            }
+            return result;
         }
 
         private Restricciones[] GetRestricciones()
