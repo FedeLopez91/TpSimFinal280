@@ -75,29 +75,27 @@ namespace TpFinalSim280
             this.gbParamModelo = new System.Windows.Forms.GroupBox();
             this.btnParamModelo = new System.Windows.Forms.Button();
             this.cmbFuncion = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblFuncion = new System.Windows.Forms.Label();
             this.txtNroRestricciones = new System.Windows.Forms.TextBox();
             this.txtNroVariables = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblNumeroRestricciones = new System.Windows.Forms.Label();
+            this.lblNroVariables = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dgvFuncionZ = new System.Windows.Forms.DataGridView();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dgvRestriciones = new System.Windows.Forms.DataGridView();
             this.lblcondionZero = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblCantMostrar = new System.Windows.Forms.Label();
             this.txtCantMostrar = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.lblCantIteraciones = new System.Windows.Forms.Label();
+            this.lblMostrarDesde = new System.Windows.Forms.Label();
             this.txtCantIteraciones = new System.Windows.Forms.TextBox();
             this.txtMostrarDesde = new System.Windows.Forms.TextBox();
             this.btnSimular = new System.Windows.Forms.Button();
             this.tabParametros = new System.Windows.Forms.TabControl();
             this.tabParam = new System.Windows.Forms.TabPage();
             this.gbProcesamiento = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.lblAvance = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.progressbar = new System.Windows.Forms.ProgressBar();
             this.tabResult = new System.Windows.Forms.TabPage();
@@ -175,7 +173,7 @@ namespace TpFinalSim280
             this.txtLambda.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtLambda.Name = "txtLambda";
             this.txtLambda.Size = new System.Drawing.Size(60, 22);
-            this.txtLambda.TabIndex = 18;
+            this.txtLambda.TabIndex = 14;
             // 
             // label10
             // 
@@ -195,7 +193,7 @@ namespace TpFinalSim280
             this.txtVarianza.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtVarianza.Name = "txtVarianza";
             this.txtVarianza.Size = new System.Drawing.Size(60, 22);
-            this.txtVarianza.TabIndex = 16;
+            this.txtVarianza.TabIndex = 13;
             // 
             // label9
             // 
@@ -214,7 +212,7 @@ namespace TpFinalSim280
             this.txtMedia.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtMedia.Name = "txtMedia";
             this.txtMedia.Size = new System.Drawing.Size(60, 22);
-            this.txtMedia.TabIndex = 14;
+            this.txtMedia.TabIndex = 12;
             // 
             // label8
             // 
@@ -233,7 +231,7 @@ namespace TpFinalSim280
             this.txtMargenBU.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtMargenBU.Name = "txtMargenBU";
             this.txtMargenBU.Size = new System.Drawing.Size(60, 22);
-            this.txtMargenBU.TabIndex = 12;
+            this.txtMargenBU.TabIndex = 16;
             // 
             // label7
             // 
@@ -252,7 +250,7 @@ namespace TpFinalSim280
             this.txtMargenAU.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtMargenAU.Name = "txtMargenAU";
             this.txtMargenAU.Size = new System.Drawing.Size(60, 22);
-            this.txtMargenAU.TabIndex = 10;
+            this.txtMargenAU.TabIndex = 15;
             // 
             // label5
             // 
@@ -271,7 +269,7 @@ namespace TpFinalSim280
             this.rbDExponencial.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rbDExponencial.Name = "rbDExponencial";
             this.rbDExponencial.Size = new System.Drawing.Size(155, 21);
-            this.rbDExponencial.TabIndex = 5;
+            this.rbDExponencial.TabIndex = 11;
             this.rbDExponencial.Text = "Exponencial Inversa";
             this.rbDExponencial.UseVisualStyleBackColor = true;
             this.rbDExponencial.CheckedChanged += new System.EventHandler(this.rad_exponencial_CheckedChanged);
@@ -283,7 +281,7 @@ namespace TpFinalSim280
             this.rbDNormal.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rbDNormal.Name = "rbDNormal";
             this.rbDNormal.Size = new System.Drawing.Size(74, 21);
-            this.rbDNormal.TabIndex = 4;
+            this.rbDNormal.TabIndex = 10;
             this.rbDNormal.Text = "Normal";
             this.rbDNormal.UseVisualStyleBackColor = true;
             this.rbDNormal.CheckedChanged += new System.EventHandler(this.rad_normal_CheckedChanged);
@@ -295,7 +293,7 @@ namespace TpFinalSim280
             this.rbDUniforme.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rbDUniforme.Name = "rbDUniforme";
             this.rbDUniforme.Size = new System.Drawing.Size(86, 21);
-            this.rbDUniforme.TabIndex = 3;
+            this.rbDUniforme.TabIndex = 9;
             this.rbDUniforme.Text = "Uniforme";
             this.rbDUniforme.UseVisualStyleBackColor = true;
             this.rbDUniforme.CheckedChanged += new System.EventHandler(this.rad_uniforme_CheckedChanged);
@@ -345,7 +343,7 @@ namespace TpFinalSim280
             this.txtSumatorioC.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtSumatorioC.Name = "txtSumatorioC";
             this.txtSumatorioC.Size = new System.Drawing.Size(60, 22);
-            this.txtSumatorioC.TabIndex = 3;
+            this.txtSumatorioC.TabIndex = 4;
             // 
             // txtIntervalos
             // 
@@ -353,7 +351,7 @@ namespace TpFinalSim280
             this.txtIntervalos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtIntervalos.Name = "txtIntervalos";
             this.txtIntervalos.Size = new System.Drawing.Size(60, 22);
-            this.txtIntervalos.TabIndex = 12;
+            this.txtIntervalos.TabIndex = 8;
             // 
             // txtCantNro
             // 
@@ -361,7 +359,7 @@ namespace TpFinalSim280
             this.txtCantNro.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtCantNro.Name = "txtCantNro";
             this.txtCantNro.Size = new System.Drawing.Size(60, 22);
-            this.txtCantNro.TabIndex = 11;
+            this.txtCantNro.TabIndex = 7;
             // 
             // label14
             // 
@@ -400,7 +398,7 @@ namespace TpFinalSim280
             this.txtDivisorM.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtDivisorM.Name = "txtDivisorM";
             this.txtDivisorM.Size = new System.Drawing.Size(60, 22);
-            this.txtDivisorM.TabIndex = 4;
+            this.txtDivisorM.TabIndex = 6;
             // 
             // label3
             // 
@@ -419,7 +417,7 @@ namespace TpFinalSim280
             this.txtMultiplicativoA.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtMultiplicativoA.Name = "txtMultiplicativoA";
             this.txtMultiplicativoA.Size = new System.Drawing.Size(60, 22);
-            this.txtMultiplicativoA.TabIndex = 2;
+            this.txtMultiplicativoA.TabIndex = 5;
             // 
             // label2
             // 
@@ -438,7 +436,7 @@ namespace TpFinalSim280
             this.txtSemillaA.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtSemillaA.Name = "txtSemillaA";
             this.txtSemillaA.Size = new System.Drawing.Size(60, 22);
-            this.txtSemillaA.TabIndex = 1;
+            this.txtSemillaA.TabIndex = 3;
             // 
             // label1
             // 
@@ -513,7 +511,7 @@ namespace TpFinalSim280
             this.dgvResultadosDistribucion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvResultadosDistribucion.Name = "dgvResultadosDistribucion";
             this.dgvResultadosDistribucion.RowTemplate.Height = 24;
-            this.dgvResultadosDistribucion.Size = new System.Drawing.Size(228, 254);
+            this.dgvResultadosDistribucion.Size = new System.Drawing.Size(204, 254);
             this.dgvResultadosDistribucion.TabIndex = 14;
             this.dgvResultadosDistribucion.Visible = false;
             // 
@@ -531,11 +529,11 @@ namespace TpFinalSim280
             // 
             this.gbParamModelo.Controls.Add(this.btnParamModelo);
             this.gbParamModelo.Controls.Add(this.cmbFuncion);
-            this.gbParamModelo.Controls.Add(this.label12);
+            this.gbParamModelo.Controls.Add(this.lblFuncion);
             this.gbParamModelo.Controls.Add(this.txtNroRestricciones);
             this.gbParamModelo.Controls.Add(this.txtNroVariables);
-            this.gbParamModelo.Controls.Add(this.label11);
-            this.gbParamModelo.Controls.Add(this.label4);
+            this.gbParamModelo.Controls.Add(this.lblNumeroRestricciones);
+            this.gbParamModelo.Controls.Add(this.lblNroVariables);
             this.gbParamModelo.Location = new System.Drawing.Point(5, 220);
             this.gbParamModelo.Name = "gbParamModelo";
             this.gbParamModelo.Size = new System.Drawing.Size(775, 86);
@@ -545,12 +543,13 @@ namespace TpFinalSim280
             // 
             // btnParamModelo
             // 
-            this.btnParamModelo.Location = new System.Drawing.Point(675, 33);
+            this.btnParamModelo.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnParamModelo.Location = new System.Drawing.Point(658, 13);
             this.btnParamModelo.Name = "btnParamModelo";
-            this.btnParamModelo.Size = new System.Drawing.Size(75, 23);
-            this.btnParamModelo.TabIndex = 17;
-            this.btnParamModelo.Text = "Procesar";
-            this.btnParamModelo.UseVisualStyleBackColor = true;
+            this.btnParamModelo.Size = new System.Drawing.Size(111, 62);
+            this.btnParamModelo.TabIndex = 20;
+            this.btnParamModelo.Text = "PROCESAR";
+            this.btnParamModelo.UseVisualStyleBackColor = false;
             this.btnParamModelo.Click += new System.EventHandler(this.okBtn_Click);
             // 
             // cmbFuncion
@@ -561,19 +560,19 @@ namespace TpFinalSim280
             this.cmbFuncion.Items.AddRange(new object[] {
             "MAX",
             "MIN"});
-            this.cmbFuncion.Location = new System.Drawing.Point(535, 33);
+            this.cmbFuncion.Location = new System.Drawing.Point(517, 35);
             this.cmbFuncion.Name = "cmbFuncion";
             this.cmbFuncion.Size = new System.Drawing.Size(121, 24);
-            this.cmbFuncion.TabIndex = 16;
+            this.cmbFuncion.TabIndex = 19;
             // 
-            // label12
+            // lblFuncion
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(467, 37);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 17);
-            this.label12.TabIndex = 15;
-            this.label12.Text = "Función:";
+            this.lblFuncion.AutoSize = true;
+            this.lblFuncion.Location = new System.Drawing.Point(449, 39);
+            this.lblFuncion.Name = "lblFuncion";
+            this.lblFuncion.Size = new System.Drawing.Size(62, 17);
+            this.lblFuncion.TabIndex = 15;
+            this.lblFuncion.Text = "Función:";
             // 
             // txtNroRestricciones
             // 
@@ -581,7 +580,7 @@ namespace TpFinalSim280
             this.txtNroRestricciones.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtNroRestricciones.Name = "txtNroRestricciones";
             this.txtNroRestricciones.Size = new System.Drawing.Size(60, 22);
-            this.txtNroRestricciones.TabIndex = 14;
+            this.txtNroRestricciones.TabIndex = 18;
             // 
             // txtNroVariables
             // 
@@ -589,25 +588,25 @@ namespace TpFinalSim280
             this.txtNroVariables.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtNroVariables.Name = "txtNroVariables";
             this.txtNroVariables.Size = new System.Drawing.Size(60, 22);
-            this.txtNroVariables.TabIndex = 13;
+            this.txtNroVariables.TabIndex = 17;
             // 
-            // label11
+            // lblNumeroRestricciones
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(219, 38);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(144, 17);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Nro de Restricciones:";
+            this.lblNumeroRestricciones.AutoSize = true;
+            this.lblNumeroRestricciones.Location = new System.Drawing.Point(219, 38);
+            this.lblNumeroRestricciones.Name = "lblNumeroRestricciones";
+            this.lblNumeroRestricciones.Size = new System.Drawing.Size(144, 17);
+            this.lblNumeroRestricciones.TabIndex = 1;
+            this.lblNumeroRestricciones.Text = "Nro de Restricciones:";
             // 
-            // label4
+            // lblNroVariables
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Nro de variables:";
+            this.lblNroVariables.AutoSize = true;
+            this.lblNroVariables.Location = new System.Drawing.Point(23, 38);
+            this.lblNroVariables.Name = "lblNroVariables";
+            this.lblNroVariables.Size = new System.Drawing.Size(116, 17);
+            this.lblNroVariables.TabIndex = 0;
+            this.lblNroVariables.Text = "Nro de variables:";
             // 
             // groupBox6
             // 
@@ -628,7 +627,7 @@ namespace TpFinalSim280
             this.dgvFuncionZ.Name = "dgvFuncionZ";
             this.dgvFuncionZ.RowTemplate.Height = 24;
             this.dgvFuncionZ.Size = new System.Drawing.Size(724, 72);
-            this.dgvFuncionZ.TabIndex = 0;
+            this.dgvFuncionZ.TabIndex = 21;
             // 
             // groupBox7
             // 
@@ -650,7 +649,7 @@ namespace TpFinalSim280
             this.dgvRestriciones.Name = "dgvRestriciones";
             this.dgvRestriciones.RowTemplate.Height = 24;
             this.dgvRestriciones.Size = new System.Drawing.Size(724, 236);
-            this.dgvRestriciones.TabIndex = 1;
+            this.dgvRestriciones.TabIndex = 22;
             // 
             // lblcondionZero
             // 
@@ -664,10 +663,10 @@ namespace TpFinalSim280
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.label15);
+            this.groupBox8.Controls.Add(this.lblCantMostrar);
             this.groupBox8.Controls.Add(this.txtCantMostrar);
-            this.groupBox8.Controls.Add(this.label16);
-            this.groupBox8.Controls.Add(this.label17);
+            this.groupBox8.Controls.Add(this.lblCantIteraciones);
+            this.groupBox8.Controls.Add(this.lblMostrarDesde);
             this.groupBox8.Controls.Add(this.txtCantIteraciones);
             this.groupBox8.Controls.Add(this.txtMostrarDesde);
             this.groupBox8.Location = new System.Drawing.Point(800, 220);
@@ -679,15 +678,15 @@ namespace TpFinalSim280
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Configuracion";
             // 
-            // label15
+            // lblCantMostrar
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(19, 124);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(128, 17);
-            this.label15.TabIndex = 9;
-            this.label15.Text = "Cantidad a Mostrar";
+            this.lblCantMostrar.AutoSize = true;
+            this.lblCantMostrar.Location = new System.Drawing.Point(19, 124);
+            this.lblCantMostrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCantMostrar.Name = "lblCantMostrar";
+            this.lblCantMostrar.Size = new System.Drawing.Size(132, 17);
+            this.lblCantMostrar.TabIndex = 9;
+            this.lblCantMostrar.Text = "Cantidad a Mostrar:";
             // 
             // txtCantMostrar
             // 
@@ -695,28 +694,29 @@ namespace TpFinalSim280
             this.txtCantMostrar.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantMostrar.Name = "txtCantMostrar";
             this.txtCantMostrar.Size = new System.Drawing.Size(69, 22);
-            this.txtCantMostrar.TabIndex = 7;
+            this.txtCantMostrar.TabIndex = 25;
             this.txtCantMostrar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCantMostrar.TextChanged += new System.EventHandler(this.Validar_txtCantMostrar);
             // 
-            // label16
+            // lblCantIteraciones
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(19, 49);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(135, 17);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Iteraciones Máximas";
+            this.lblCantIteraciones.AutoSize = true;
+            this.lblCantIteraciones.Location = new System.Drawing.Point(19, 49);
+            this.lblCantIteraciones.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCantIteraciones.Name = "lblCantIteraciones";
+            this.lblCantIteraciones.Size = new System.Drawing.Size(141, 17);
+            this.lblCantIteraciones.TabIndex = 0;
+            this.lblCantIteraciones.Text = "Cantidad Iteraciones:";
             // 
-            // label17
+            // lblMostrarDesde
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(19, 87);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(101, 17);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "Mostrar Desde";
+            this.lblMostrarDesde.AutoSize = true;
+            this.lblMostrarDesde.Location = new System.Drawing.Point(19, 87);
+            this.lblMostrarDesde.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMostrarDesde.Name = "lblMostrarDesde";
+            this.lblMostrarDesde.Size = new System.Drawing.Size(105, 17);
+            this.lblMostrarDesde.TabIndex = 1;
+            this.lblMostrarDesde.Text = "Mostrar Desde:";
             // 
             // txtCantIteraciones
             // 
@@ -724,7 +724,7 @@ namespace TpFinalSim280
             this.txtCantIteraciones.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantIteraciones.Name = "txtCantIteraciones";
             this.txtCantIteraciones.Size = new System.Drawing.Size(68, 22);
-            this.txtCantIteraciones.TabIndex = 5;
+            this.txtCantIteraciones.TabIndex = 23;
             this.txtCantIteraciones.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtMostrarDesde
@@ -733,17 +733,18 @@ namespace TpFinalSim280
             this.txtMostrarDesde.Margin = new System.Windows.Forms.Padding(4);
             this.txtMostrarDesde.Name = "txtMostrarDesde";
             this.txtMostrarDesde.Size = new System.Drawing.Size(68, 22);
-            this.txtMostrarDesde.TabIndex = 6;
+            this.txtMostrarDesde.TabIndex = 24;
             this.txtMostrarDesde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMostrarDesde.TextChanged += new System.EventHandler(this.Validar_txtMostrarDesde);
             // 
             // btnSimular
             // 
-            this.btnSimular.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnSimular.Location = new System.Drawing.Point(994, 400);
+            this.btnSimular.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnSimular.Location = new System.Drawing.Point(983, 400);
             this.btnSimular.Margin = new System.Windows.Forms.Padding(4);
             this.btnSimular.Name = "btnSimular";
             this.btnSimular.Size = new System.Drawing.Size(184, 74);
-            this.btnSimular.TabIndex = 15;
+            this.btnSimular.TabIndex = 26;
             this.btnSimular.Text = "SIMULAR";
             this.btnSimular.UseVisualStyleBackColor = false;
             this.btnSimular.Click += new System.EventHandler(this.btnSimularClick);
@@ -780,35 +781,14 @@ namespace TpFinalSim280
             // 
             // gbProcesamiento
             // 
-            this.gbProcesamiento.Controls.Add(this.button1);
-            this.gbProcesamiento.Controls.Add(this.lblAvance);
             this.gbProcesamiento.Controls.Add(this.label18);
             this.gbProcesamiento.Controls.Add(this.progressbar);
             this.gbProcesamiento.Location = new System.Drawing.Point(800, 496);
             this.gbProcesamiento.Name = "gbProcesamiento";
-            this.gbProcesamiento.Size = new System.Drawing.Size(613, 159);
+            this.gbProcesamiento.Size = new System.Drawing.Size(589, 159);
             this.gbProcesamiento.TabIndex = 19;
             this.gbProcesamiento.TabStop = false;
             this.gbProcesamiento.Text = "Procesamiento Modelo";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(433, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // lblAvance
-            // 
-            this.lblAvance.AutoSize = true;
-            this.lblAvance.Location = new System.Drawing.Point(535, 48);
-            this.lblAvance.Name = "lblAvance";
-            this.lblAvance.Size = new System.Drawing.Size(13, 17);
-            this.lblAvance.TabIndex = 20;
-            this.lblAvance.Text = "-";
             // 
             // label18
             // 
@@ -825,7 +805,7 @@ namespace TpFinalSim280
             this.progressbar.MarqueeAnimationSpeed = 1000;
             this.progressbar.Maximum = 1000;
             this.progressbar.Name = "progressbar";
-            this.progressbar.Size = new System.Drawing.Size(567, 76);
+            this.progressbar.Size = new System.Drawing.Size(536, 76);
             this.progressbar.Step = 1;
             this.progressbar.TabIndex = 18;
             // 
@@ -904,8 +884,10 @@ namespace TpFinalSim280
             // dgvResultados
             // 
             this.dgvResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResultados.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvResultados.Location = new System.Drawing.Point(6, 158);
             this.dgvResultados.Name = "dgvResultados";
+            this.dgvResultados.ReadOnly = true;
             this.dgvResultados.RowTemplate.Height = 24;
             this.dgvResultados.Size = new System.Drawing.Size(1480, 597);
             this.dgvResultados.TabIndex = 0;
@@ -993,11 +975,11 @@ namespace TpFinalSim280
         #endregion
 
         private GroupBox gbParamModelo;
-        private Label label12;
+        private Label lblFuncion;
         private TextBox txtNroRestricciones;
         private TextBox txtNroVariables;
-        private Label label11;
-        private Label label4;
+        private Label lblNumeroRestricciones;
+        private Label lblNroVariables;
         private ComboBox cmbFuncion;
         private Button btnParamModelo;
         private GroupBox groupBox6;
@@ -1006,10 +988,10 @@ namespace TpFinalSim280
         private DataGridView dgvFuncionZ;
         private DataGridView dgvRestriciones;
         private GroupBox groupBox8;
-        private Label label15;
+        private Label lblCantMostrar;
         private TextBox txtCantMostrar;
-        private Label label16;
-        private Label label17;
+        private Label lblCantIteraciones;
+        private Label lblMostrarDesde;
         private TextBox txtCantIteraciones;
         private TextBox txtMostrarDesde;
         private Button btnSimular;
@@ -1024,10 +1006,8 @@ namespace TpFinalSim280
         private GroupBox groupBox10;
         private GroupBox groupBox9;
         private GroupBox gbProcesamiento;
-        private Label lblAvance;
         private Label label18;
         private ProgressBar progressbar;
-        private Button button1;
     }
 }
 

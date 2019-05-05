@@ -45,7 +45,7 @@ namespace Simulacion
             var random = numerosAleatorios.Distribucion;
 
             string[] vector = new string[tabla.Columns.Count];
-
+            var porcAvance = 0;
             for (int j = 1; j <= cantIteraciones; j++)
 
             {
@@ -149,6 +149,7 @@ namespace Simulacion
                     tabla.LoadDataRow(vector, true);
 
                 pb.Increment(pb.Step);
+                porcAvance = cantIteraciones / j;
             }
 
             tabla.LoadDataRow(vector, true);

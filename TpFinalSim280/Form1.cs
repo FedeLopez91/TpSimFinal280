@@ -25,6 +25,7 @@ namespace TpFinalSim280
         private int nroVariables;
         private const int Decimales = 4;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -52,62 +53,68 @@ namespace TpFinalSim280
             int c;
             int m;
 
-            if (!int.TryParse(txtDivisorM.Text, out m) ||
-                m <= 0)
+            if (rbGCMixto.Checked || rbGCMultiplicativo.Checked)
             {
-                MessageBox.Show(@"El valor de M debe ser un entero positivo");
-                txtDivisorM.Focus();
+                if (!int.TryParse(txtDivisorM.Text, out m) || m <= 0)
+                {
+                    MessageBox.Show(@"El valor de M debe ser un entero positivo");
+                    txtDivisorM.Focus();
+                    return false;
+                }
+
+                if (!int.TryParse(txtSemillaA.Text, out semilla) ||
+                    semilla <= 0 || semilla >= m)
+                {
+                    MessageBox.Show(@"El valor de semilla debe ser un entero positivo menor a M");
+                    txtSemillaA.Focus();
+                    return false;
+                }
+
+                if (!int.TryParse(txtMultiplicativoA.Text, out a) ||
+                    a <= 0 || a >= m)
+                {
+                    MessageBox.Show(@"El valor de A debe ser un entero positivo menor a M");
+                    txtMultiplicativoA.Focus();
+                    return false;
+                }
+
+                if (rbGCMixto.Checked && (!int.TryParse(txtSumatorioC.Text, out c) ||
+                    c <= 0 || c >= m))
+                {
+                    MessageBox.Show(@"El valor de C debe ser un entero positivo menor a M");
+                    txtSumatorioC.Focus();
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(@"Seleccionar tipo de Generador de Número Aleatorio");
                 return false;
             }
-
-            if (!int.TryParse(txtSemillaA.Text, out semilla) ||
-                semilla <= 0 || semilla >= m)
-            {
-                MessageBox.Show(@"El valor de semilla debe ser un entero positivo menor a M");
-                txtSemillaA.Focus();
-                return false;
-            }
-
-            if (!int.TryParse(txtMultiplicativoA.Text, out a) ||
-                a <= 0 || a >= m)
-            {
-                MessageBox.Show(@"El valor de A debe ser un entero positivo menor a M");
-                txtMultiplicativoA.Focus();
-                return false;
-            }
-
-            if (rbGCMixto.Checked && (!int.TryParse(txtSumatorioC.Text, out c) ||
-                c <= 0 || c >= m))
-            {
-                MessageBox.Show(@"El valor de C debe ser un entero positivo menor a M");
-                txtSumatorioC.Focus();
-                return false;
-            }
-
-            return true;
         }
 
         private bool FormularioValidoDistribucion()
         {
-            int muestra;
-            int intervalos;
-            float alfa;
+            //int muestra;
+            //int intervalos;
+            //float alfa;
 
-            if (!int.TryParse(txtCantNro.Text, out muestra)
-                || muestra <= 0)
-            {
-                MessageBox.Show(@"El tamaño de la muestra debe ser un entero positivo");
-                txtCantNro.Focus();
-                return false;
-            }
+            //if (!int.TryParse(txtCantNro.Text, out muestra)
+            //    || muestra <= 0)
+            //{
+            //    MessageBox.Show(@"El tamaño de la muestra debe ser un entero positivo");
+            //    txtCantNro.Focus();
+            //    return false;
+            //}
 
-            if (!int.TryParse(txtIntervalos.Text, out intervalos)
-                || intervalos <= 0)
-            {
-                MessageBox.Show(@"La cantidad de intervalos debe ser un entero positivo");
-                txtIntervalos.Focus();
-                return false;
-            }
+            //if (!int.TryParse(txtIntervalos.Text, out intervalos)
+            //    || intervalos <= 0)
+            //{
+            //    MessageBox.Show(@"La cantidad de intervalos debe ser un entero positivo");
+            //    txtIntervalos.Focus();
+            //    return false;
+            //}
 
             //if (!float.TryParse(txt_chicierto.Text, out alfa)
             //    || alfa <= 0 || alfa >= 1)
@@ -117,57 +124,65 @@ namespace TpFinalSim280
             //    return false;
             //}
 
-            if (rbDUniforme.Checked)
+            if (rbDUniforme.Checked || rbDNormal.Checked || rbDExponencial.Checked)
             {
-                float a;
-                float b;
-
-                if (!float.TryParse(txtMargenAU.Text, out a))
+                if (rbDUniforme.Checked)
                 {
-                    MessageBox.Show(@"El valor de A debe ser un número válido");
-                    txtMargenAU.Focus();
-                    return false;
+                    float a;
+                    float b;
+
+                    if (!float.TryParse(txtMargenAU.Text, out a))
+                    {
+                        MessageBox.Show(@"El valor de A debe ser un número válido");
+                        txtMargenAU.Focus();
+                        return false;
+                    }
+
+                    if (!float.TryParse(txtMargenBU.Text, out b) || b <= a)
+                    {
+                        MessageBox.Show(@"El valor de B debe ser mayor que A");
+                        txtMargenBU.Focus();
+                        return false;
+                    }
                 }
 
-                if (!float.TryParse(txtMargenBU.Text, out b) || b <= a)
+                if (rbDNormal.Checked)
                 {
-                    MessageBox.Show(@"El valor de B debe ser mayor que A");
-                    txtMargenBU.Focus();
-                    return false;
+                    float media;
+                    float varianza;
+
+                    if (!float.TryParse(txtMedia.Text, out media))
+                    {
+                        MessageBox.Show(@"La Media debe ser un número válido");
+                        txtMedia.Focus();
+                        return false;
+                    }
+
+                    if (!float.TryParse(txtVarianza.Text, out varianza) || varianza < 0)
+                    {
+                        MessageBox.Show(@"La Varianza no puede ser negativa");
+                        txtVarianza.Focus();
+                        return false;
+                    }
+                }
+
+                if (rbDExponencial.Checked)
+                {
+                    float lambda;
+
+                    if (!float.TryParse(txtLambda.Text, out lambda) || lambda <= 0)
+                    {
+                        MessageBox.Show(@"El valor de Lambda debe ser positiva");
+                        txtLambda.Focus();
+                        return false;
+                    }
                 }
             }
-
-            if (rbDNormal.Checked)
+            else
             {
-                float media;
-                float varianza;
-
-                if (!float.TryParse(txtMedia.Text, out media))
-                {
-                    MessageBox.Show(@"La Media debe ser un número válido");
-                    txtMedia.Focus();
-                    return false;
-                }
-
-                if (!float.TryParse(txtVarianza.Text, out varianza) || varianza < 0)
-                {
-                    MessageBox.Show(@"La Varianza no puede ser negativa");
-                    txtVarianza.Focus();
-                    return false;
-                }
+                MessageBox.Show("Debe ingresar una Distribución para poder continuar");
             }
 
-            if (rbDExponencial.Checked)
-            {
-                float lambda;
-
-                if (!float.TryParse(txtLambda.Text, out lambda) || lambda <= 0)
-                {
-                    MessageBox.Show(@"La Varianza debe ser positiva");
-                    txtLambda.Focus();
-                    return false;
-                }
-            }
 
             return true;
         }
@@ -352,8 +367,8 @@ namespace TpFinalSim280
 
         private void okBtn_Click(object sender, EventArgs e)
         {
-            var result = ValidarContenidoTxt(txtNroRestricciones);
-            result += ValidarContenidoTxt(txtNroVariables);
+            var result = ValidarContenidoTxt(txtNroRestricciones, true);
+            result += ValidarContenidoTxt(txtNroVariables, true);
             if (string.IsNullOrEmpty(result))
             {
                 try
@@ -373,6 +388,31 @@ namespace TpFinalSim280
             {
                 MessageBox.Show("Ingresar valor en: \n\t" + result);
             }
+
+        }
+
+        private void GenerarTablaFuncionZ()
+        {
+            dgvFuncionZ.Rows.Clear();
+            dgvFuncionZ.ColumnCount = nroVariables + 1;
+            dgvFuncionZ.RowHeadersVisible = false;
+            for (int i = 0; i < nroVariables + 1; i++)
+            {
+                dgvFuncionZ.Columns[i].Width = 50;
+                dgvFuncionZ.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                if (i < nroVariables)
+                {
+                    dgvFuncionZ.Columns[i].Name = "X" + (i + 1).ToString();
+                }
+                else
+                {
+                    dgvFuncionZ.Columns[i].Name = "C";
+                }
+
+            }
+            string[] row = new string[nroVariables + 2];
+            dgvFuncionZ.Rows.Add(row);
+            dgvFuncionZ.Rows[0].Height = 20;
 
         }
 
@@ -420,31 +460,6 @@ namespace TpFinalSim280
             lblcondionZero.Text = condicionZero + " >= 0";
         }
 
-        private void GenerarTablaFuncionZ()
-        {
-            dgvFuncionZ.Rows.Clear();
-            dgvFuncionZ.ColumnCount = nroVariables + 1;
-            dgvFuncionZ.RowHeadersVisible = false;
-            for (int i = 0; i < nroVariables + 1; i++)
-            {
-                dgvFuncionZ.Columns[i].Width = 50;
-                dgvFuncionZ.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                if (i < nroVariables)
-                {
-                    dgvFuncionZ.Columns[i].Name = "X" + (i + 1).ToString();
-                }
-                else
-                {
-                    dgvFuncionZ.Columns[i].Name = "C";
-                }
-
-            }
-            string[] row = new string[nroVariables + 2];
-            dgvFuncionZ.Rows.Add(row);
-            dgvFuncionZ.Rows[0].Height = 20;
-
-        }
-
 
         private void btnSimularClick(object sender, EventArgs e)
         {
@@ -454,44 +469,71 @@ namespace TpFinalSim280
 
         private void ProcesarParametros()
         {
-
             var resp = "";
-            resp = ValidarContenidoTxt(txtCantIteraciones);
-            resp += ValidarContenidoTxt(txtMostrarDesde);
-            resp += ValidarContenidoTxt(txtCantMostrar);
+            resp = ValidarContenidoTxt(txtCantIteraciones, true);
+            resp += ValidarContenidoTxt(txtMostrarDesde, true);
+            resp += ValidarContenidoTxt(txtCantMostrar, true);
             resp += ValidarContenidoCmb(cmbFuncion);
             resp += ValidarContenidoDgv(dgvFuncionZ);
             resp += ValidarContenidoDgv(dgvRestriciones);
 
-            //if (string.IsNullOrEmpty(resp))
-            //{
-                string tipoFuncion = "MAX";
-                //string tipoFuncion = "MIN";
-                int cantIteraciones = 10000;
-                int mostrarDesde = 0;
-                int cantAMostrar = 150;
-                Restricciones[] restriccionesParam = GetRestriccionesEjemplo();
-                FunctionZ funcionZ = new FunctionZ(new float[2] { 1, 1 }, 120);
-                GenerarNumeros();
 
-            Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, GetRestriccionesEjemplo(), funcionZ, gestor);
+            if (FormularioValido() &&  string.IsNullOrEmpty(resp)  )
+            {
+                try
+                {
+                    //string tipoFuncion = "MAX";
+                    //string tipoFuncion = "MIN";
+                    //int cantIteraciones = 10000;
+                    //int mostrarDesde = 0;
+                    //int cantAMostrar = 150;
+                    //Restricciones[] restriccionesParam = GetRestriccionesEjemplo();
+                    //FunctionZ funcionZ = new FunctionZ(new float[2] { 1, 1 }, 120);
+                    //if (FormularioValido())
+                    //{
+                    GenerarNumeros();
 
-            //Simular(cmbFuncion.SelectedItem.ToString(), int.Parse(txtCantIteraciones.Text), int.Parse(txtMostrarDesde.Text), int.Parse(txtCantMostrar.Text), GetRestricciones(), GetFunctionZ(), gestor);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Completar Parámetros para Iniciar Simulacion: \n\t" + resp);
-            //    //respuesta = false;
-            //}
+                    //Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, GetRestriccionesEjemplo(), funcionZ, gestor);
+
+                    Simular(cmbFuncion.SelectedItem.ToString(), int.Parse(txtCantIteraciones.Text), int.Parse(txtMostrarDesde.Text), int.Parse(txtCantMostrar.Text), GetRestricciones(), GetFunctionZ(), gestor);
+                    //}
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+
+
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(resp))
+                {
+                    MessageBox.Show("Completar Parámetros para Iniciar Simulacion: \n\t" + resp);
+                }
+                
+            }
 
         }
 
-        private string ValidarContenidoTxt(TextBox textInput)
+        private string ValidarContenidoTxt(TextBox textInput , bool? isNumber)
         {
             var resp = "";
-            if (string.IsNullOrEmpty(textInput.Text))
+            if (!string.IsNullOrEmpty(textInput.Text))
             {
-                resp = "- "+textInput.Name.Replace("txt", " ") + "\n" + "\t";
+                if (isNumber.HasValue && isNumber.Value)
+                {
+                    if (int.Parse(textInput.Text) <= 0 )
+                    {
+                        resp = "- " + textInput.Name.Replace("txt", " ")+": Ingresar valor mayor a 0"+ "\n" + "\t";
+                    }
+                }
+                
+            }
+            else
+            {
+                resp = "- " + textInput.Name.Replace("txt", " ") + "\n" + "\t";
             }
             return resp;
         }
@@ -539,57 +581,69 @@ namespace TpFinalSim280
 
         private Restricciones[] GetRestricciones()
         {
-
             Restricciones[] restricciones = new Restricciones[nroRestricciones];
-            for (int i = 0; i < nroRestricciones; i++)
+            try
             {
-                float[] variables = new float[nroVariables];
-                float b = float.Parse(dgvRestriciones.Rows[i].Cells[nroVariables + 1].Value.ToString());
-                string signo = Convert.ToString(dgvRestriciones.Rows[i].Cells[nroVariables].Value);
-                for (int j = 0; j < nroVariables; j++)
+                for (int i = 0; i < nroRestricciones; i++)
                 {
-                    if (dgvRestriciones.Rows[i].Cells[j].Value == null)
+                    float[] variables = new float[nroVariables];
+                    var b = float.Parse(dgvRestriciones.Rows[i].Cells[nroVariables + 1].Value.ToString());
+                    string signo = Convert.ToString(dgvRestriciones.Rows[i].Cells[nroVariables].Value);
+                    for (int j = 0; j < nroVariables; j++)
                     {
-                        variables[j] = 0;
-                        continue;
+                        if (dgvRestriciones.Rows[i].Cells[j].Value == null)
+                        {
+                            variables[j] = 0;
+                            continue;
+                        }
+                        variables[j] = float.Parse(dgvRestriciones.Rows[i].Cells[j].Value.ToString());
                     }
-                    variables[j] = float.Parse(dgvRestriciones.Rows[i].Cells[j].Value.ToString());
+                    restricciones[i] = new Restricciones(variables, b, signo);
                 }
-                restricciones[i] = new Restricciones(variables, b, signo);
+                return restricciones;
             }
-
-            return restricciones;
+            catch(Exception e)
+            {
+                throw new Exception("Se han Ingresado datos erróneos al ingresar los valores de las Restricciones");
+            }
+            
         }
 
         private FunctionZ GetFunctionZ()
         {
-            float[] variablesFuncion = new float[nroVariables];
-            for (int i = 0; i < nroVariables; i++)
+            try
             {
-                variablesFuncion[i] = float.Parse(dgvFuncionZ.Rows[0].Cells[i].Value.ToString());
+                float[] variablesFuncion = new float[nroVariables];
+                for (int i = 0; i < nroVariables; i++)
+                {
+                    variablesFuncion[i] = float.Parse(dgvFuncionZ.Rows[0].Cells[i].Value.ToString());
+                }
+                float c = float.Parse(dgvFuncionZ.Rows[0].Cells[nroVariables].Value.ToString());
+
+                FunctionZ functionZ = new FunctionZ(variablesFuncion, c);
+
+                return functionZ;
             }
-            float c = float.Parse(dgvFuncionZ.Rows[0].Cells[nroVariables].Value.ToString());
+            catch (Exception e)
+            {
+                throw new Exception("Se han Ingresado datos erróneos al ingresar los valores de la Funcion Objetivo");
+            }
 
-            FunctionZ functionZ = new FunctionZ(variablesFuncion, c);
-
-            return functionZ;
 
         }
 
         private void Simular(string tipoFuncion, int cantIteraciones, int mostrarDesde, int cantAMostrar, Restricciones[] restricciones, FunctionZ funcionZ, GestorEstadistico numerosAleatorios)
         {
-            var pb = (ProgressBar)this.Controls.Find("progressbar", true).FirstOrDefault();
-            pb.Value = 0;
-            pb.Maximum = cantIteraciones;
+            var progressBar = (ProgressBar)Controls.Find("progressbar", true).FirstOrDefault();
+            progressBar.Value = 0;
+            progressBar.Maximum = cantIteraciones;
 
             float[] variablesOptimas = new float[funcionZ.variables.Length];
             float zOptima = 0;
             txtFuncionZDisplay.Text = GetFuncionZDisplay(funcionZ, tipoFuncion);
             txtRestriccionesDisplay.Text = GetRestrincionesDisplay(restricciones);
 
-
-
-            dgvResultados.DataSource = new ManejadorSimulacion().Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restricciones, funcionZ, gestor, pb, ref variablesOptimas, ref zOptima);
+            dgvResultados.DataSource = new ManejadorSimulacion().Simular(tipoFuncion, cantIteraciones, mostrarDesde, cantAMostrar, restricciones, funcionZ, gestor, progressBar, ref variablesOptimas, ref zOptima);
 
             dgvResultados.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvResultados.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -676,20 +730,17 @@ namespace TpFinalSim280
             return restriccionesArray;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Validar_txtMostrarDesde(object sender, EventArgs e)
         {
-            var pb = (ProgressBar)this.Controls.Find("progressbar", true).FirstOrDefault();
-            var interaciones = 10000;
-
-            for (int i = 0; i < interaciones; i++)
-            {
-                var result = i;
-                pb.Increment(result);
-            }
-            
-
-
+            if (int.Parse(txtCantIteraciones.Text) <= int.Parse(txtMostrarDesde.Text))
+                MessageBox.Show("Mostrar Desde: Debe ser menor al campo Cantidad de iteraciones");
         }
 
+        private void Validar_txtCantMostrar(object sender, EventArgs e)
+        {
+            var intervalo = int.Parse(txtMostrarDesde.Text) + int.Parse(txtCantMostrar.Text);
+            if (int.Parse(txtCantIteraciones.Text) < intervalo)
+                MessageBox.Show("Cantidad a Mostrar: El valor ingresado supera la cantidad de iteraciones ingresadas");
+        }
     }
 }
